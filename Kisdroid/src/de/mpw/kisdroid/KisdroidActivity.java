@@ -1,6 +1,7 @@
 package de.mpw.kisdroid;
 
 import android.app.Activity;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
@@ -20,11 +21,13 @@ public class KisdroidActivity extends Activity {
 		case R.id.sf_start:
 			SERVER= "192.168.2.11";
 			PORT = 2501;
-			client = new KismetClient(SERVER,PORT);
-			client.start();
+			//client = new KismetClient(SERVER,PORT);
+			//client.start();
+			startService(new Intent(this, KismetService.class));
 			break;
 		case R.id.sf_stop:
-			client.stopClient();
+			//client.stopClient();
+			stopService(new Intent(this, KismetService.class));
 			break;
 
 		default:
