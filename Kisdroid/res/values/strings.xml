@@ -3,5 +3,7 @@
 
     <string name="hello">Hello World, KisdroidActivity!</string>
     <string name="app_name">Kisdroid</string>
+    <string name="sf_start">Starten</string>
+    <string name="sf_stop">Stoppen</string>
 
 </resources>
