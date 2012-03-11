@@ -74,7 +74,7 @@ public class KismetClient extends Thread {
 			out.println("!1 ENABLE STATUS *");
 			//out.println("!2 ENABLE SSID *");
 			out.println(CAPABILITY_SSID);
-			out.println("!3 ENABLE TIME");
+			//out.println("!3 ENABLE TIME");
 			this.connected = true;
 			this.running = true;
 		} catch (UnknownHostException e) {
