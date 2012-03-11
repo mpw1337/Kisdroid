@@ -22,4 +22,10 @@
         android:text="@string/sf_stop"
         android:onClick="onClick" />
 
+    <TextView
+        android:id="@+id/tv_Networks"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:text="" />
+
 </LinearLayout>

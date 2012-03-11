@@ -32,7 +32,7 @@ public class KismetService extends Service {
 	public void onCreate() {
 		super.onCreate();
 		Log.d(TAG, "OnCreate() aufgerufgen");
-		client = new KismetClient(SERVER, PORT);
+		client = new KismetClient(SERVER, PORT,this.getApplicationContext());
 		
 		nManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 		nBenachrichtigung = new Notification(icon, NDetail, System.currentTimeMillis());
