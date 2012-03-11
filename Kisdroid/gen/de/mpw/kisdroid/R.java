@@ -25,5 +25,6 @@ public final class R {
         public static final int hello=0x7f040000;
         public static final int sf_start=0x7f040002;
         public static final int sf_stop=0x7f040003;
+        public static final int toast_fehler=0x7f040004;
     }
 }

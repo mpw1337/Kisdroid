@@ -8,6 +8,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.IBinder;
 import android.util.Log;
+import android.widget.Toast;
 
 public class KismetService extends Service {
 	
@@ -32,10 +33,11 @@ public class KismetService extends Service {
 		super.onCreate();
 		Log.d(TAG, "OnCreate() aufgerufgen");
 		client = new KismetClient(SERVER, PORT);
+		
 		nManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 		nBenachrichtigung = new Notification(icon, NDetail, System.currentTimeMillis());
 		Context context = getApplicationContext();
-		Intent intent = new Intent(context, KismetService.class);
+		Intent intent = new Intent(context, KisdroidActivity.class);
 		PendingIntent Pendingintent = PendingIntent.getActivity(context, 0, intent, 0);
 		nBenachrichtigung.setLatestEventInfo(context, NTitel, NDetail, Pendingintent);
 		nManager.notify(1, nBenachrichtigung);
@@ -44,15 +46,16 @@ public class KismetService extends Service {
 	public void onDestroy() {
 		Log.d(TAG, "OnDestroy() aufgerufgen");
 		client.stopClient();
-		client.stop();
 		nManager.cancel(1);
 		super.onDestroy();
 	}
 	@Override
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
-		if(client.connected){
-			client.start();
+		client.start();
+		if(client.Fehler !=""){
+			Toast fehler = Toast.makeText(this,getResources().getString(R.string.toast_fehler)+client.Fehler, Toast.LENGTH_SHORT);
+			fehler.show();
 		}			
 		Log.d(TAG, "OnStart() aufgerufgen" + intent.getPackage() + "Mit der StartID:"+startId);
 	}
