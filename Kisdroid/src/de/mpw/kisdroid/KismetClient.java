@@ -19,6 +19,12 @@ public class KismetClient extends Thread {
 			"de.mpw.kisdroid.intent.action.SSID";
 	private static final String CAPABILITY_SSID =
 			"!2 ENABLE SSID mac,ssid";
+	private static final String CAPABILITY_STATUS =
+			"!1 ENABLE STATUS *";
+	private static final String SENTENCE_SSID =
+			"*SSID";
+	private static final String EXTRA_SSID =
+			"SSID";
 	private String mServer;
 	
 	private Context ctx;
@@ -36,7 +42,7 @@ public class KismetClient extends Thread {
 	public String Fehler = "";
 	volatile boolean running = true;
 	
-	
+	//Creator der KismetClient Klasse
 	public KismetClient(String server, int port, Context context){
 		this.mPort = port;
 		this.mServer = server;
@@ -45,6 +51,8 @@ public class KismetClient extends Thread {
 	}
 	
 	public void stopClient(){
+		//Wenn der Client verbunden war wird running und connected auf false gesetzt
+		//dann wird versucht den Socket zu schlieﬂen
 		if (connected) {
 			running = false;
 			connected = false;
@@ -62,19 +70,26 @@ public class KismetClient extends Thread {
 		// TODO Auto-generated method stub
 		super.destroy();
 	}
-
+	
+	//Klient starten
 	public void start(){
-		
+		//Fehler auf leer setzten
 		this.Fehler = "";
 		try {
+			//Adresse des Servers setzen
 			adress = InetAddress.getByName(mServer);
+			//neuen Socket mit dem Port und der Adresse erstellen
 			mSocket = new Socket(adress,mPort);
+			//out und in Stream registrieren
 			out = new PrintWriter(mSocket.getOutputStream(), true);
 			in = new BufferedReader(new InputStreamReader(mSocket.getInputStream()));
-			out.println("!1 ENABLE STATUS *");
-			//out.println("!2 ENABLE SSID *");
+			//Status Aktivieren
+			out.println(CAPABILITY_STATUS);
+			// SSID ausgabe aktivieren
 			out.println(CAPABILITY_SSID);
+			
 			//out.println("!3 ENABLE TIME");
+			//Verbund und running auf true setzten
 			this.connected = true;
 			this.running = true;
 		} catch (UnknownHostException e) {
@@ -97,6 +112,7 @@ public class KismetClient extends Thread {
 	@Override
 	public void run() {
 		super.run();
+		//Solange der Client l‰uft soll vom Server gelesen werden
 		while(running){
 			
 			try {
@@ -104,9 +120,11 @@ public class KismetClient extends Thread {
 				while ((fromServer  = in.readLine()) != null && running) {
 				//fromServer = in.readLine();
 					System.out.println(fromServer);
-					if(fromServer.startsWith("*SSID")){
+					
+					//Wenn ein *SSID Sentece kommt, soll ein Broadcast gesendet werden
+					if(fromServer.startsWith(SENTENCE_SSID)){
 						Intent intent = new Intent(ACTION_SSID);
-						intent.putExtra("SSID", fromServer);
+						intent.putExtra(EXTRA_SSID, fromServer);
 						ctx.sendBroadcast(intent);
 					}
 				}
