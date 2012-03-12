@@ -31,24 +31,28 @@ public class KisdroidActivity extends Activity {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+        // Text View für die SSID's zuweisen
         tv_Networks = (TextView) findViewById(R.id.tv_Networks);
     }
     
     @Override
 	protected void onResume() {
-		// TODO Auto-generated method stub
 		super.onResume();
+		//Intent Filter für die SSID's erstellen
 		final IntentFilter filter = new IntentFilter(KismetClient.ACTION_SSID);
+		//Receiver für die SSID Braodcasts registrieren
 		getApplicationContext().registerReceiver(mBroadcastReceiver, filter);
 	}
 
 	@Override
 	protected void onPause() {
+		//Receiver für die SSID Bradcasts abmelden
 		getApplicationContext().unregisterReceiver(mBroadcastReceiver);
 		super.onPause();
 	}
-
+	/** Click Handler für die Schaltflächen */
 	public void onClick(final View view){
+		
     	switch (view.getId()) {
 		case R.id.sf_start:
 			SERVER= "192.168.2.11";
