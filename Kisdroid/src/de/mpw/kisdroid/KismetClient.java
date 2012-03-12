@@ -97,7 +97,8 @@ public class KismetClient extends Thread {
 			//e.printStackTrace();
 			Log.d(TAG, e.getMessage());
 			this.connected = false;
-			this.Fehler = e.getMessage();
+			//this.Fehler = e.getMessage();
+			this.Fehler = e.getLocalizedMessage();
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			//e.printStackTrace();
@@ -105,7 +106,9 @@ public class KismetClient extends Thread {
 			this.Fehler = e.getMessage();
 			this.connected = false;
 		}
-		super.start();
+		if(connected && running){
+			super.start();
+		}
 	
 	}
 

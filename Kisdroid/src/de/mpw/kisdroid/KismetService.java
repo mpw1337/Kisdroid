@@ -46,18 +46,6 @@ public class KismetService extends Service {
 		
 		//Notification Manager holen
 		nManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
-		//Benachrichtigung erstellen und anzeigen das der Service gestartet wurde
-		//Basis Daten der Benachrichtigung festlegen
-		//"icon" ist das App icon, Ndetail ist der Detailtext
-		nBenachrichtigung = new Notification(icon, NDetail, System.currentTimeMillis());
-		//Den Context der Anwendung holen
-		Context context = getApplicationContext();
-		//Den intent und Pending intent auf die Hauptactivity setzen
-		Intent intent = new Intent(context, KisdroidActivity.class);
-		PendingIntent Pendingintent = PendingIntent.getActivity(context, 0, intent, 0);
-		nBenachrichtigung.setLatestEventInfo(context, NTitel, NDetail, Pendingintent);
-		//Benachrichtigung anzeigen
-		nManager.notify(ID_RUNNING, nBenachrichtigung);
 	}
 	@Override
 	public void onDestroy() {
@@ -72,7 +60,6 @@ public class KismetService extends Service {
 	}
 	@Override
 	public void onStart(Intent intent, int startId) {
-		super.onStart(intent, startId);
 		//Client starten
 		client.start();
 		//Wenn es einen Fehler beim starten gab, wird er ausgegeben
@@ -81,7 +68,21 @@ public class KismetService extends Service {
 					getResources().getString(R.string.toast_fehler)+client.Fehler,
 					Toast.LENGTH_SHORT);
 			fehler.show();
-		}			
+		}else{			
+			super.onStart(intent, startId);
+			//Benachrichtigung erstellen und anzeigen das der Service gestartet wurde
+			//Basis Daten der Benachrichtigung festlegen
+			//"icon" ist das App icon, Ndetail ist der Detailtext
+			nBenachrichtigung = new Notification(icon, NDetail, System.currentTimeMillis());
+			//Den Context der Anwendung holen
+			Context context = getApplicationContext();
+			//Den intent und Pending intent auf die Hauptactivity setzen
+			Intent mainintent = new Intent(context, KisdroidActivity.class);
+			PendingIntent Pendingintent = PendingIntent.getActivity(context, 0, mainintent, 0);
+			nBenachrichtigung.setLatestEventInfo(context, NTitel, NDetail, Pendingintent);
+			//Benachrichtigung anzeigen
+			nManager.notify(ID_RUNNING, nBenachrichtigung);
+		}
 		if(debug){
 			Log.d(TAG, "OnStart() aufgerufgen" + intent.getPackage() + "Mit der StartID:"+startId);
 		}
