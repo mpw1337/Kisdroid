@@ -23,41 +23,68 @@ public class KismetService extends Service {
 	private String NDetail = "Kisdroid Service läuft";
 	int icon = R.drawable.ic_launcher;
 	private Notification nBenachrichtigung;
+	
+	private final boolean debug = true;
+	private final static int ID_RUNNING = 2304;
+	
 	@Override
+	// Binder Methode für den Service
 	public IBinder onBind(Intent arg0) {
 		// TODO Auto-generated method stub
 		return mBinder;
 	}
+
+	//Erstellung des Services
 	@Override
 	public void onCreate() {
 		super.onCreate();
-		Log.d(TAG, "OnCreate() aufgerufgen");
+		if(debug){
+			Log.d(TAG, "OnCreate() aufgerufgen");
+		}
+		//Neues Kismet Client Objekt erstellen
 		client = new KismetClient(SERVER, PORT,this.getApplicationContext());
 		
+		//Notification Manager holen
 		nManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+		//Benachrichtigung erstellen und anzeigen das der Service gestartet wurde
+		//Basis Daten der Benachrichtigung festlegen
+		//"icon" ist das App icon, Ndetail ist der Detailtext
 		nBenachrichtigung = new Notification(icon, NDetail, System.currentTimeMillis());
+		//Den Context der Anwendung holen
 		Context context = getApplicationContext();
+		//Den intent und Pending intent auf die Hauptactivity setzen
 		Intent intent = new Intent(context, KisdroidActivity.class);
 		PendingIntent Pendingintent = PendingIntent.getActivity(context, 0, intent, 0);
 		nBenachrichtigung.setLatestEventInfo(context, NTitel, NDetail, Pendingintent);
-		nManager.notify(1, nBenachrichtigung);
+		//Benachrichtigung anzeigen
+		nManager.notify(ID_RUNNING, nBenachrichtigung);
 	}
 	@Override
 	public void onDestroy() {
-		Log.d(TAG, "OnDestroy() aufgerufgen");
+		if(debug){
+			Log.d(TAG, "OnDestroy() aufgerufgen");
+		}
+		//Client stopen
 		client.stopClient();
-		nManager.cancel(1);
+		//Notification löschen
+		nManager.cancel(ID_RUNNING);
 		super.onDestroy();
 	}
 	@Override
 	public void onStart(Intent intent, int startId) {
 		super.onStart(intent, startId);
+		//Client starten
 		client.start();
+		//Wenn es einen Fehler beim starten gab, wird er ausgegeben
 		if(client.Fehler !=""){
-			Toast fehler = Toast.makeText(this,getResources().getString(R.string.toast_fehler)+client.Fehler, Toast.LENGTH_SHORT);
+			Toast fehler = Toast.makeText(getApplicationContext(),
+					getResources().getString(R.string.toast_fehler)+client.Fehler,
+					Toast.LENGTH_SHORT);
 			fehler.show();
 		}			
-		Log.d(TAG, "OnStart() aufgerufgen" + intent.getPackage() + "Mit der StartID:"+startId);
+		if(debug){
+			Log.d(TAG, "OnStart() aufgerufgen" + intent.getPackage() + "Mit der StartID:"+startId);
+		}
 	}
 
 }
