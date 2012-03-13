@@ -1,14 +1,14 @@
 package de.mpw.kisdroid.protocols;
 
 public class Ssid implements Protocols {
-	
+
 	private String raw;
 	private String[] mArray;
 	private String mSSID;
 	private String mMAC;
 	private static final String identifier = "*SSID";
-	
-	public Ssid(String string){
+
+	public Ssid(String string) {
 		this.raw = string;
 		mArray = raw.split(":");
 		mMAC = mArray[0];
@@ -19,12 +19,12 @@ public class Ssid implements Protocols {
 		// TODO Auto-generated method stub
 		return raw;
 	}
-	
-	public String getSsid(){
+
+	public String getSsid() {
 		return mSSID;
 	}
-	
-	public String getMac(){
+
+	public String getMac() {
 		return mMAC;
 	}
 
