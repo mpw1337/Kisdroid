@@ -11,9 +11,16 @@ public class Ssid implements Protocols {
 
 	public Ssid(String string) {
 		this.raw = string;
-		mArray = raw.split(":");
+		String[] temp = raw.split(":", 2);
+		// mArray = temp[1].indexOf("\x01", start)
+		temp[1] = temp[1].trim();
+		mArray = temp[1].split(" ", 3);
 		mMAC = mArray[0];
-		mSSID = mArray[1];
+		if (mArray.length < 2) {
+			mSSID = "<no ssid>";
+		} else {
+			mSSID = mArray[1].trim();
+		}
 	}
 
 	public String getRaw() {
@@ -33,6 +40,5 @@ public class Ssid implements Protocols {
 		// TODO Auto-generated method stub
 		return identifier;
 	}
-	
 
 }

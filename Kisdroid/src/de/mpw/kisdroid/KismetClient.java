@@ -128,11 +128,11 @@ public class KismetClient extends Thread {
 
 					// Wenn ein *SSID Sentece kommt, soll ein Broadcast gesendet
 					// werden
-					if (fromServer.startsWith(SENTENCE_SSID)) {
+					/*if (fromServer.startsWith(SENTENCE_SSID)) {
 						Intent intent = new Intent(ACTION_SSID);
 						intent.putExtra(EXTRA_SSID, fromServer);
 						ctx.sendBroadcast(intent);
-					}
+					}*/
 				}
 				return;
 			} catch (IOException e) {

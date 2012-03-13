@@ -1,6 +1,7 @@
 package de.mpw.kisdroid;
 
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import de.mpw.kisdroid.protocols.Ssid;
@@ -23,10 +24,17 @@ public class KismetMsgHandler {
 		if (msg.startsWith(Ssid.getIdentifier())) {
 			ssid.add(new Ssid(msg));
 			Intent intent = new Intent(ACTION_SSID);
-			Object[] t1 = ssid.toArray();
-			intent.putExtra(Ssid.EXTRA, t1);
+			String[] temp = new String[ssid.size()];
+			int i = 0;
+			for (Iterator<Ssid> iterator = ssid.iterator(); iterator.hasNext();) {
+				
+				Ssid type = (Ssid) iterator.next();
+				temp[i] = type.getSsid();
+				i++;
+			}
+			intent.putExtra(Ssid.EXTRA, temp);
 			
-	//		ctx.sendBroadcast(intent);
+			ctx.sendBroadcast(intent);
 		}
 	}
 

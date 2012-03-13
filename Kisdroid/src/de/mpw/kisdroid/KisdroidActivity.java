@@ -25,9 +25,9 @@ public class KisdroidActivity extends Activity {
 		public void onReceive(Context context, Intent intent) {
 			// TODO Auto-generated method stub
 			tv_Networks.setText(intent.getExtras().getString("SSID"));
-			Ssid[] networks = (Ssid[]) intent.getExtras().get(Ssid.EXTRA);
-			for (Ssid ssid : networks) {
-				Log.d(getLocalClassName(), ssid.getSsid());
+			String[] networks = intent.getExtras().getStringArray(Ssid.EXTRA);
+			for (String ssid : networks) {
+				Log.d(getLocalClassName(), ssid);
 			}
 
 		}
