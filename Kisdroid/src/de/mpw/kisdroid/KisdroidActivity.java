@@ -1,11 +1,14 @@
 package de.mpw.kisdroid;
 
+
+import de.mpw.kisdroid.protocols.Ssid;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
 
@@ -14,7 +17,6 @@ public class KisdroidActivity extends Activity {
 	public KismetClient client;
 	public String SERVER;
 	public int PORT;
-
 	private TextView tv_Networks;
 
 	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
@@ -23,6 +25,10 @@ public class KisdroidActivity extends Activity {
 		public void onReceive(Context context, Intent intent) {
 			// TODO Auto-generated method stub
 			tv_Networks.setText(intent.getExtras().getString("SSID"));
+			Ssid[] networks = (Ssid[]) intent.getExtras().get(Ssid.EXTRA);
+			for (Ssid ssid : networks) {
+				Log.d(getLocalClassName(), ssid.getSsid());
+			}
 
 		}
 	};
@@ -41,8 +47,10 @@ public class KisdroidActivity extends Activity {
 		super.onResume();
 		// Intent Filter für die SSID's erstellen
 		final IntentFilter filter = new IntentFilter(KismetClient.ACTION_SSID);
+		final IntentFilter ssida = new IntentFilter(Ssid.EXTRA);
 		// Receiver für die SSID Braodcasts registrieren
 		getApplicationContext().registerReceiver(mBroadcastReceiver, filter);
+		getApplicationContext().registerReceiver(mBroadcastReceiver, ssida);
 	}
 
 	@Override

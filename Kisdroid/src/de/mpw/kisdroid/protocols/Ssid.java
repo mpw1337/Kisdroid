@@ -7,6 +7,7 @@ public class Ssid implements Protocols {
 	private String mSSID;
 	private String mMAC;
 	private static final String identifier = "*SSID";
+	public static String EXTRA = "SSIDA";
 
 	public Ssid(String string) {
 		this.raw = string;
@@ -32,5 +33,6 @@ public class Ssid implements Protocols {
 		// TODO Auto-generated method stub
 		return identifier;
 	}
+	
 
 }
