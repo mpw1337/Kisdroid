@@ -21,8 +21,8 @@ public class KismetClient extends Thread {
 	private static final String CAPABILITY_SSID = "!2 ENABLE SSID mac,ssid";
 
 	private static final String CAPABILITY_STATUS = "!1 ENABLE STATUS *";
-	private static final String SENTENCE_SSID = "*SSID";
-	private static final String EXTRA_SSID = "SSID";
+//	private static final String SENTENCE_SSID = "*SSID";
+//	private static final String EXTRA_SSID = "SSID";
 	private String mServer;
 
 	private Context ctx;
