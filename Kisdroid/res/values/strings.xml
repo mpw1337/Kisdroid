@@ -9,5 +9,6 @@
     <string name="pf_Server">Server Einstellungen</string>
     <string name="pf_host">Host:</string>
     <string name="pf_port">Port:</string>
+    <string name="pf_einstellungen">Einstellungen</string>
 
 </resources>

@@ -20,6 +20,7 @@
             </intent-filter>
         </activity>
         <service android:name="KismetService"></service>
+        <activity android:name="Einstellungen"></activity>
     </application>
 
 </manifest>

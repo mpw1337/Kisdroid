@@ -4,10 +4,12 @@
     <PreferenceCategory android:title="@string/pf_Server" >
         <EditTextPreference
             android:dialogTitle="@string/pf_host"
-            android:key="host" />
+            android:key="host" 
+            android:id="@+id/pf_Server"
+            android:title="@string/pf_host"/>
         <EditTextPreference
             android:dialogTitle="@string/pf_port"
-            android:defaultValue="2501" android:key="port"/>
+            android:defaultValue="2501" android:key="port" android:title="@string/pf_port"/>
         
     </PreferenceCategory>
 

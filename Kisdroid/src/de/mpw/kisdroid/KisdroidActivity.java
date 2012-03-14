@@ -8,6 +8,8 @@ import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.TextView;
 
@@ -75,9 +77,28 @@ public class KisdroidActivity extends Activity {
 			// client.stopClient();
 			stopService(new Intent(this, KismetService.class));
 			break;
+		default:
+			break;
+		}
+	}
+
+	@Override
+	public boolean onCreateOptionsMenu(Menu menu) {
+
+		getMenuInflater().inflate(R.menu.hauptmenue, menu);
+		return super.onCreateOptionsMenu(menu);
+	}
+
+	@Override
+	public boolean onOptionsItemSelected(MenuItem item) {
+		switch (item.getItemId()) {
+		case R.id.opt_einstellungen:
+			startActivity(new Intent(this, Einstellungen.class));
+			break;
 
 		default:
 			break;
 		}
+		return super.onOptionsItemSelected(item);
 	}
 }
