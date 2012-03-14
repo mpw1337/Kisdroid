@@ -42,6 +42,7 @@ public class KismetService extends Service {
 			Log.d(TAG, "OnCreate() aufgerufgen");
 		}
 		// Neues Kismet Client Objekt erstellen
+		getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
 		client = new KismetClient(SERVER, PORT, this.getApplicationContext());
 
 		// Notification Manager holen
