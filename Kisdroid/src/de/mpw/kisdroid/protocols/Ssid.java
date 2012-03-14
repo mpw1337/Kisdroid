@@ -1,13 +1,16 @@
 package de.mpw.kisdroid.protocols;
 
-
 public class Ssid implements Protocols {
 
 	private String raw;
 	private String[] mArray;
 	private String mSSID;
 	private String mMAC;
+	private String mFirstTime;
+	private String mLastTime;
+	private String mMaxRate;
 	private static final String identifier = "*SSID";
+	public static String CAPABILITY = "!%n ENABLE SSID mac,firsttime,lasttime,maxrate,ssid";
 	public static String EXTRA = "SSIDA";
 
 	public Ssid(String string) {
@@ -15,12 +18,15 @@ public class Ssid implements Protocols {
 		String[] temp = raw.split(":", 2);
 		// mArray = temp[1].indexOf("\x01", start)
 		temp[1] = temp[1].trim();
-		mArray = temp[1].split(" ", 3);
+		mArray = temp[1].split(" ", 5);
 		mMAC = mArray[0];
-		if (mArray.length < 2) {
+		mFirstTime = mArray[1].trim();
+		mLastTime = mArray[2].trim();
+		mMaxRate = mArray[3].trim();
+		if (mArray.length < 5) {
 			mSSID = "<no ssid>";
 		} else {
-			mSSID = mArray[1].trim();
+			mSSID = mArray[4].trim();
 		}
 	}
 
@@ -35,6 +41,18 @@ public class Ssid implements Protocols {
 
 	public String getMac() {
 		return mMAC;
+	}
+
+	public String getLastTime() {
+		return mLastTime;
+	}
+
+	public String getFirstTime() {
+		return mFirstTime;
+	}
+
+	public String getMaxRate() {
+		return mMaxRate;
 	}
 
 	public static String getIdentifier() {
