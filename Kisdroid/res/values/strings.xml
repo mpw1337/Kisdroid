@@ -6,5 +6,8 @@
     <string name="sf_start">Starten</string>
     <string name="sf_stop">Stoppen</string>
     <string name="toast_fehler">Fehler beim verbinden:</string>
+    <string name="pf_Server">Server Einstellungen</string>
+    <string name="pf_host">Host:</string>
+    <string name="pf_port">Port:</string>
 
 </resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <PreferenceCategory android:title="@string/pf_Server" >
+        <EditTextPreference
+            android:dialogTitle="@string/pf_host"
+            android:key="host" />
+        <EditTextPreference
+            android:dialogTitle="@string/pf_port"
+            android:defaultValue="2501" android:key="port"/>
+        
+    </PreferenceCategory>
+
+</PreferenceScreen>
