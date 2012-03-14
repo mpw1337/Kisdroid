@@ -1,5 +1,6 @@
 package de.mpw.kisdroid.protocols;
 
+
 public class Ssid implements Protocols {
 
 	private String raw;

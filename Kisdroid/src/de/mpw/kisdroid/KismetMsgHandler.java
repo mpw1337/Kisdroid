@@ -16,8 +16,6 @@ public class KismetMsgHandler {
 
 	public KismetMsgHandler(Context context) {
 		this.ctx = context;
-		
-
 	}
 
 	public void parse(String msg) {
@@ -25,14 +23,16 @@ public class KismetMsgHandler {
 			ssid.add(new Ssid(msg));
 			Intent intent = new Intent(ACTION_SSID);
 			String[] temp = new String[ssid.size()];
+			Object[] object = new Object[ssid.size()];
 			int i = 0;
 			for (Iterator<Ssid> iterator = ssid.iterator(); iterator.hasNext();) {
-				
 				Ssid type = (Ssid) iterator.next();
+				object[i] = type;
 				temp[i] = type.getSsid();
 				i++;
 			}
 			intent.putExtra(Ssid.EXTRA, temp);
+			//intent.putExtra("OBJECT", object);
 			
 			ctx.sendBroadcast(intent);
 		}
