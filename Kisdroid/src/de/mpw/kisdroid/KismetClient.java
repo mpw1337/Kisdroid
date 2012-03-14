@@ -8,8 +8,9 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import de.mpw.kisdroid.protocols.Ssid;
+
 import android.content.Context;
-import android.content.Intent;
 import android.os.Handler;
 import android.util.Log;
 
@@ -18,11 +19,12 @@ public class KismetClient extends Thread {
 	private static String TAG = "KISMETCLIENT";
 	public static final String ACTION_SSID = "de.mpw.kisdroid.intent.action.SSID";
 
-	private static final String CAPABILITY_SSID = "!2 ENABLE SSID mac,ssid";
+	// private static final String CAPABILITY_SSID =
+	// "!2 ENABLE SSID mac,firsttime,lasttime,maxrate,ssid";
 
 	private static final String CAPABILITY_STATUS = "!1 ENABLE STATUS *";
-//	private static final String SENTENCE_SSID = "*SSID";
-//	private static final String EXTRA_SSID = "SSID";
+	// private static final String SENTENCE_SSID = "*SSID";
+	// private static final String EXTRA_SSID = "SSID";
 	private String mServer;
 
 	private Context ctx;
@@ -87,7 +89,8 @@ public class KismetClient extends Thread {
 			// Status Aktivieren
 			out.println(CAPABILITY_STATUS);
 			// SSID ausgabe aktivieren
-			out.println(CAPABILITY_SSID);
+			// out.println(CAPABILITY_SSID);
+			out.println(Ssid.CAPABILITY.replace("%n", "2"));
 
 			// out.println("!3 ENABLE TIME");
 			// Verbund und running auf true setzten
@@ -128,11 +131,11 @@ public class KismetClient extends Thread {
 
 					// Wenn ein *SSID Sentece kommt, soll ein Broadcast gesendet
 					// werden
-					/*if (fromServer.startsWith(SENTENCE_SSID)) {
-						Intent intent = new Intent(ACTION_SSID);
-						intent.putExtra(EXTRA_SSID, fromServer);
-						ctx.sendBroadcast(intent);
-					}*/
+					/*
+					 * if (fromServer.startsWith(SENTENCE_SSID)) { Intent intent
+					 * = new Intent(ACTION_SSID); intent.putExtra(EXTRA_SSID,
+					 * fromServer); ctx.sendBroadcast(intent); }
+					 */
 				}
 				return;
 			} catch (IOException e) {

@@ -1,6 +1,5 @@
 package de.mpw.kisdroid;
 
-
 import de.mpw.kisdroid.protocols.Ssid;
 import android.app.Activity;
 import android.content.BroadcastReceiver;
@@ -24,11 +23,12 @@ public class KisdroidActivity extends Activity {
 		@Override
 		public void onReceive(Context context, Intent intent) {
 			// TODO Auto-generated method stub
-			tv_Networks.setText(intent.getExtras().getString("SSID"));
-			String[] networks = intent.getExtras().getStringArray(Ssid.EXTRA);
-			for (String ssid : networks) {
-				Log.d(getLocalClassName(), ssid);
-			}
+			/*
+			 * tv_Networks.setText(intent.getExtras().getString("SSID"));
+			 * String[] networks =
+			 * intent.getExtras().getStringArray(Ssid.EXTRA); for (String ssid :
+			 * networks) { Log.d(getLocalClassName(), ssid); }
+			 */
 
 		}
 	};
