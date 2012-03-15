@@ -45,15 +45,21 @@ public class KismetMsgHandler {
 			}
 			Intent intent = new Intent(ACTION_SSID);
 			String[] temp = new String[ssid.size()];
+			String[] strength = new String[ssid.size()];
+			String[] mac = new String[ssid.size()];
 			Object[] object = new Object[ssid.size()];
 			int i = 0;
 			for (Iterator<Ssid> iterator = ssid.iterator(); iterator.hasNext();) {
 				Ssid type = (Ssid) iterator.next();
 				object[i] = type;
 				temp[i] = type.getSsid();
+				strength[i] = type.getMaxRate();
+				mac[i] = type.getMac();
 				i++;
 			}
 			intent.putExtra(Ssid.EXTRA, temp);
+			intent.putExtra(Ssid.EXTRA_MAXSTRENGTH, strength);
+			intent.putExtra(Ssid.EXTRA_MAC, mac);
 			// intent.putExtra("OBJECT", object);
 
 			ctx.sendBroadcast(intent);

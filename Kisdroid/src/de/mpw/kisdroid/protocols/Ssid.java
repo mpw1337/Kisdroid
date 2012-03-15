@@ -10,8 +10,10 @@ public class Ssid implements Protocols {
 	private String mLastTime;
 	private String mMaxRate;
 	private static final String identifier = "*SSID";
+	public static final String EXTRA_MAC = "MAC";
 	public static String CAPABILITY = "!%n ENABLE SSID mac,firsttime,lasttime,maxrate,ssid";
 	public static String EXTRA = "SSIDA";
+	public static String EXTRA_MAXSTRENGTH = "MAXSTRENGTH";
 
 	public Ssid(String string) {
 		this.raw = string;
