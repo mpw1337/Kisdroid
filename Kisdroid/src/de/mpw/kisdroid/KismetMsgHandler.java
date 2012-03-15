@@ -21,9 +21,28 @@ public class KismetMsgHandler {
 	}
 
 	public void parse(String msg) {
-		/*Wenn die Nachricht vom Typ SSID war wird sie zur Liste der Netzwerke hinzugefügt*/
+		/*
+		 * Wenn die Nachricht vom Typ SSID war wird sie zur Liste der Netzwerke
+		 * hinzugefügt
+		 */
 		if (msg.startsWith(Ssid.getIdentifier())) {
-			ssid.add(new Ssid(msg));
+			Ssid tssid = new Ssid(msg);
+			boolean doppelt = false;
+			for (Iterator<Ssid> iterator = ssid.iterator(); iterator.hasNext();) {
+				Ssid type = (Ssid) iterator.next();
+				if ((type.getMac().equals(tssid.getMac()))
+						| (type.getSsid().equals(tssid.getSsid()))) {
+					doppelt = true;
+					// Log.d("KISDROID_DOPPELTE", type.getMac() + tssid.getMac()
+					// + " SSID: " + type.getSsid() + " und " +
+					// tssid.getSsid());
+					break;
+				}
+
+			}
+			if (!doppelt) {
+				ssid.add(tssid);
+			}
 			Intent intent = new Intent(ACTION_SSID);
 			String[] temp = new String[ssid.size()];
 			Object[] object = new Object[ssid.size()];
@@ -35,8 +54,8 @@ public class KismetMsgHandler {
 				i++;
 			}
 			intent.putExtra(Ssid.EXTRA, temp);
-			//intent.putExtra("OBJECT", object);
-			
+			// intent.putExtra("OBJECT", object);
+
 			ctx.sendBroadcast(intent);
 		}
 		if (msg.startsWith(Status.IDENTIFIER)) {
