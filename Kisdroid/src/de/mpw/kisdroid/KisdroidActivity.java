@@ -11,6 +11,8 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 import android.widget.TextView;
 
 public class KisdroidActivity extends Activity {
@@ -19,6 +21,8 @@ public class KisdroidActivity extends Activity {
 	public String SERVER;
 	public int PORT;
 	private TextView tv_Networks;
+	private TextView tv_strength;
+	private TextView tv_mac;
 
 	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
 
@@ -27,10 +31,23 @@ public class KisdroidActivity extends Activity {
 			// TODO Auto-generated method stub
 			/*
 			 * tv_Networks.setText(intent.getExtras().getString("SSID"));
-			 * String[] networks =
-			 * intent.getExtras().getStringArray(Ssid.EXTRA); for (String ssid :
-			 * networks) { Log.d(getLocalClassName(), ssid); }
 			 */
+			tv_Networks.setText("");
+			String[] networks = intent.getExtras().getStringArray(Ssid.EXTRA);
+			for (String ssid : networks) {
+				// Log.d(getLocalClassName(), ssid);
+				tv_Networks.append("\n " + ssid);
+			}
+			tv_strength.setText("");
+			String[] maxstrength = intent.getStringArrayExtra(Ssid.EXTRA_MAXSTRENGTH);
+			for (String strength : maxstrength) {
+				tv_strength.append("\n" + strength);
+			}
+			tv_mac.setText("");
+			String[] mac = intent.getStringArrayExtra(Ssid.EXTRA_MAC);
+			for (String string : mac) {
+				tv_mac.append("\n" + string);
+			}
 
 		}
 	};
@@ -42,6 +59,9 @@ public class KisdroidActivity extends Activity {
 		setContentView(R.layout.main);
 		// Text View für die SSID's zuweisen
 		tv_Networks = (TextView) findViewById(R.id.tv_Networks);
+		tv_strength = (TextView) findViewById(R.id.tv_strength);
+		tv_mac = (TextView) findViewById(R.id.tv_mac);
+		
 	}
 
 	@Override
