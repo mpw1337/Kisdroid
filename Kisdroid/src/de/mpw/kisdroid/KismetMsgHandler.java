@@ -5,7 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import de.mpw.kisdroid.protocols.Ssid;
-import de.mpw.kisdroid.protocols.Status;
+import de.mpw.kisdroid.protocols.Info;
 
 import android.content.Context;
 import android.content.Intent;
@@ -15,7 +15,7 @@ public class KismetMsgHandler {
 	private Context ctx;
 	public static final String ACTION_SSID = "de.mpw.kisdroid.intent.action.SSID";
 	private Set<Ssid> ssid = new HashSet<Ssid>();
-	private Set<Status> status = new HashSet<Status>();
+	private Set<Info> status = new HashSet<Info>();
 
 	public KismetMsgHandler(Context context) {
 		this.ctx = context;
@@ -69,9 +69,9 @@ public class KismetMsgHandler {
 
 			ctx.sendBroadcast(intent);
 		}
-		if (msg.startsWith(Status.IDENTIFIER)) {
-			status.add(new Status(msg));
-			Log.d(Status.IDENTIFIER, msg);
+		if (msg.startsWith(Info.IDENTIFIER)) {
+			status.add(new Info(msg));
+			Log.d("info", msg);
 		}
 	}
 

@@ -1,13 +1,14 @@
 package de.mpw.kisdroid.protocols;
 
-public class Status implements Protocols {
+public class Info implements Protocols {
 	
 	private String raw;
 	//private String[] mArray;
 	public static final String IDENTIFIER = "*INFO";
 	public static String EXTRA = "INFO";
+	public static String CAPABILITY = "!%n ENABLE INFO *";
 
-	public Status(String string){
+	public Info(String string){
 		this.raw = string;
 	}
 	public String getRaw() {

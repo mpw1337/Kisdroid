@@ -8,6 +8,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import de.mpw.kisdroid.protocols.Info;
 import de.mpw.kisdroid.protocols.Ssid;
 
 import android.content.Context;
@@ -91,6 +92,8 @@ public class KismetClient extends Thread {
 			// SSID ausgabe aktivieren
 			// out.println(CAPABILITY_SSID);
 			out.println(Ssid.CAPABILITY.replace("%n", "2"));
+			// Info aktivieren
+			out.println(Info.CAPABILITY.replace("%n", "3"));
 
 			// out.println("!3 ENABLE TIME");
 			// Verbund und running auf true setzten
