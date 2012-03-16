@@ -84,6 +84,8 @@ public class KismetService extends Service {
 			Intent mainintent = new Intent(context, KisdroidActivity.class);
 			PendingIntent Pendingintent = PendingIntent.getActivity(context, 0, mainintent, 0);
 			nBenachrichtigung.setLatestEventInfo(context, NTitel, NDetail, Pendingintent);
+			nBenachrichtigung.flags |= Notification.FLAG_NO_CLEAR;
+			nBenachrichtigung.flags |= Notification.FLAG_ONGOING_EVENT;
 			// Benachrichtigung anzeigen
 			nManager.notify(ID_RUNNING, nBenachrichtigung);
 
