@@ -2,6 +2,10 @@ package de.mpw.kisdroid;
 
 import de.mpw.kisdroid.protocols.Ssid;
 import android.app.Activity;
+import android.app.ActivityManager;
+import android.app.ActivityManager.RunningServiceInfo;
+import android.app.NotificationManager;
+import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -20,6 +24,7 @@ public class KisdroidActivity extends Activity {
 	public KismetClient client;
 	public String SERVER;
 	public int PORT;
+
 	private TextView tv_Networks;
 	private TextView tv_strength;
 	private TextView tv_mac;
@@ -61,7 +66,7 @@ public class KisdroidActivity extends Activity {
 		tv_Networks = (TextView) findViewById(R.id.tv_Networks);
 		tv_strength = (TextView) findViewById(R.id.tv_strength);
 		tv_mac = (TextView) findViewById(R.id.tv_mac);
-		
+
 	}
 
 	@Override
@@ -115,10 +120,25 @@ public class KisdroidActivity extends Activity {
 		case R.id.opt_einstellungen:
 			startActivity(new Intent(this, Einstellungen.class));
 			break;
-
+		case R.id.opt_start_stop:
+			if (isMyServiceRunning()) {
+				stopService(new Intent(this, KismetService.class));
+			} else {
+				startService(new Intent(this, KismetService.class));
+			}
 		default:
 			break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	private boolean isMyServiceRunning() {
+		ActivityManager manager = (ActivityManager) getSystemService(ACTIVITY_SERVICE);
+		for (RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
+			if (KismetService.class.getName().equals(service.service.getClassName())) {
+				return true;
+			}
+		}
+		return false;
 	}
 }

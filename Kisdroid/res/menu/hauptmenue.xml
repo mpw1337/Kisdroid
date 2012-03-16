@@ -3,6 +3,10 @@
     <item android:id="@+id/opt_einstellungen" 
         android:icon="@android:drawable/ic_menu_preferences"
         android:title="@string/pf_einstellungen"/>
+    <item android:id="@+id/opt_start_stop"
+        android:icon="@android:drawable/ic_media_play"
+        android:title="@string/opt_start_stop"
+        />
     
 
 </menu>
