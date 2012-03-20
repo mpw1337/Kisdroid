@@ -1,0 +1,5 @@
+03-20 15:01:48.049: D/BATTERY(17234): Percentage: 98% Charging:0AC:0 Verbleibend:13146
+03-20 15:01:49.019: D/BATTERY(17234): Percentage: 98% Charging:0AC:0 Verbleibend:13353
+03-20 15:01:50.794: D/BATTERY(17234): Percentage: 98% Charging:2AC:1 Verbleibend:13353
+03-20 15:01:51.119: D/BATTERY(17234): Percentage: 98% Charging:2AC:1 Verbleibend:13353
+03-20 15:01:52.544: D/BATTERY(17234): Percentage: 98% Charging:2AC:1 Verbleibend:0
