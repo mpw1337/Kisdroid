@@ -9,7 +9,9 @@
             android:title="@string/pf_host"/>
         <EditTextPreference
             android:dialogTitle="@string/pf_port"
-            android:defaultValue="2501" android:key="port" android:title="@string/pf_port"/>
+            android:defaultValue="2501"
+           	android:key="port" 
+           	android:title="@string/pf_port"/>
         
     </PreferenceCategory>
 
