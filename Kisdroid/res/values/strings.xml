@@ -13,5 +13,6 @@
     <string name="opt_start_stop">Starten/Stoppen</string>
     <string name="gps_kf">Kein Fix</string>
     <string name="gps_3df">3D Fix</string>
+    <string name="tx_bat_Ueberschrift">Battery</string>
 
 </resources>
