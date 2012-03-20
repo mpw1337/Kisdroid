@@ -88,24 +88,24 @@ public class KisdroidActivity extends Activity {
 	}
 
 	/** Click Handler für die Schaltflächen */
-	public void onClick(final View view) {
-
-		switch (view.getId()) {
-		case R.id.sf_start:
-			SERVER = "192.168.2.11";
-			PORT = 2501;
-			// client = new KismetClient(SERVER,PORT);
-			// client.start();
-			startService(new Intent(this, KismetService.class));
-			break;
-		case R.id.sf_stop:
-			// client.stopClient();
-			stopService(new Intent(this, KismetService.class));
-			break;
-		default:
-			break;
-		}
-	}
+//	public void onClick(final View view) {
+//
+//		switch (view.getId()) {
+//		case R.id.sf_start:
+//			SERVER = "192.168.2.11";
+//			PORT = 2501;
+//			// client = new KismetClient(SERVER,PORT);
+//			// client.start();
+//			startService(new Intent(this, KismetService.class));
+//			break;
+//		case R.id.sf_stop:
+//			// client.stopClient();
+//			stopService(new Intent(this, KismetService.class));
+//			break;
+//		default:
+//			break;
+//		}
+//	}
 
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu) {

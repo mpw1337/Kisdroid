@@ -9,18 +9,18 @@
         android:layout_height="wrap_content"
         android:text="@string/hello" />
 
-    <Button
-        android:id="@+id/sf_start"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/sf_start"
-        android:onClick="onClick" />
-    <Button
-        android:id="@+id/sf_stop"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:text="@string/sf_stop"
-        android:onClick="onClick" />
+<!--     <Button -->
+<!--         android:id="@+id/sf_start" -->
+<!--         android:layout_width="fill_parent" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:text="@string/sf_start" -->
+<!--         android:onClick="onClick" /> -->
+<!--     <Button -->
+<!--         android:id="@+id/sf_stop" -->
+<!--         android:layout_width="fill_parent" -->
+<!--         android:layout_height="wrap_content" -->
+<!--         android:text="@string/sf_stop" -->
+<!--         android:onClick="onClick" /> -->
     
     <ScrollView 
         android:layout_width="fill_parent"
