@@ -20,7 +20,7 @@ import android.util.Log;
 public class KismetClient extends Thread {
 
 	private static String TAG = "KISMETCLIENT";
-	public static final String ACTION_SSID = "de.mpw.kisdroid.intent.action.SSID";
+//	public static final String ACTION_SSID = "de.mpw.kisdroid.intent.action.SSID";
 
 	// private static final String CAPABILITY_SSID =
 	// "!2 ENABLE SSID mac,firsttime,lasttime,maxrate,ssid";

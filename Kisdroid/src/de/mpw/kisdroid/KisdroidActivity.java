@@ -73,7 +73,7 @@ public class KisdroidActivity extends Activity {
 	protected void onResume() {
 		super.onResume();
 		// Intent Filter für die SSID's erstellen
-		final IntentFilter filter = new IntentFilter(KismetClient.ACTION_SSID);
+		final IntentFilter filter = new IntentFilter(KismetMsgHandler.ACTION_SSID);
 		final IntentFilter ssida = new IntentFilter(Ssid.EXTRA);
 		// Receiver für die SSID Braodcasts registrieren
 		getApplicationContext().registerReceiver(mBroadcastReceiver, filter);

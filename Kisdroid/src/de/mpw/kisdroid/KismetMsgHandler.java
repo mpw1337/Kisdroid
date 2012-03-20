@@ -16,6 +16,7 @@ import android.util.Log;
 public class KismetMsgHandler {
 	private Context ctx;
 	public static final String ACTION_SSID = "de.mpw.kisdroid.intent.action.SSID";
+	public static final String ACTION_BATTERY = "de.mpw.kisdroid.intent.action.BATTERY";
 	private Set<Ssid> ssid = new HashSet<Ssid>();
 	private Set<Info> status = new HashSet<Info>();
 	private GPS gps;
@@ -85,6 +86,10 @@ public class KismetMsgHandler {
 		if (msg.startsWith(Battery.IDENTIFIER)){
 			battery = new Battery(msg);
 			Log.d("BATTERY", battery.toString());
+			Intent bat_intent = new Intent(ACTION_BATTERY);
+			bat_intent.putExtra(Battery.EXTRA_PERCENTAGE, battery.getPercentage());
+			ctx.sendBroadcast(bat_intent);
+			
 		}
 	}
 

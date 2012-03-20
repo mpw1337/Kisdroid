@@ -2,8 +2,9 @@ package de.mpw.kisdroid.protocols;
 
 public class Battery implements Protocols {
 	public static final String IDENTIFIER = "*BATTERY";
-	public static String EXTRA = "BATTERY";
+	public static String EXTRA_PERCENTAGE = "BATTERY_PERCENTAGE";
 	public static String CAPABILITY = "!%n ENABLE BATTERY percentage,charging,ac,remaining";
+	public static String ACTION = "de.mpw.kisdroid.intent.action.BATTERY";
 	private String raw;
 
 	private String percentage;
@@ -26,6 +27,12 @@ public class Battery implements Protocols {
 
 	public String getRaw() {
 		return raw;
+	}
+	
+	public Integer getPercentage(){
+		Integer i;
+		i = Integer.decode(percentage);
+		return i;
 	}
 
 	public String toString() {
