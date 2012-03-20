@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import de.mpw.kisdroid.protocols.Battery;
 import de.mpw.kisdroid.protocols.GPS;
 import de.mpw.kisdroid.protocols.Ssid;
 import de.mpw.kisdroid.protocols.Info;
@@ -18,6 +19,7 @@ public class KismetMsgHandler {
 	private Set<Ssid> ssid = new HashSet<Ssid>();
 	private Set<Info> status = new HashSet<Info>();
 	private GPS gps;
+	private Battery battery;
 
 	public KismetMsgHandler(Context context) {
 		this.ctx = context;
@@ -78,6 +80,11 @@ public class KismetMsgHandler {
 		if (msg.startsWith(GPS.IDENTIFIER)) {
 			gps = new GPS(msg);
 			Log.d("GPS", gps.toString());
+		}
+		
+		if (msg.startsWith(Battery.IDENTIFIER)){
+			battery = new Battery(msg);
+			Log.d("BATTERY", battery.toString());
 		}
 	}
 

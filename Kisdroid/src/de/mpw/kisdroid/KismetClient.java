@@ -8,6 +8,7 @@ import java.net.InetAddress;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import de.mpw.kisdroid.protocols.Battery;
 import de.mpw.kisdroid.protocols.GPS;
 import de.mpw.kisdroid.protocols.Info;
 import de.mpw.kisdroid.protocols.Ssid;
@@ -97,6 +98,9 @@ public class KismetClient extends Thread {
 			out.println(Info.CAPABILITY.replace("%n", "3"));
 			//GPS aktivieren
 			out.println(GPS.CAPABILITY.replace("%n", "4"));
+			//Battery aktivieren
+			out.println(Battery.CAPABILITY.replace("%n", "5"));
+			
 
 			// out.println("!3 ENABLE TIME");
 			// Verbund und running auf true setzten
