@@ -7,6 +7,8 @@
         android:icon="@android:drawable/ic_media_play"
         android:title="@string/opt_start_stop"
         />
+    <item android:id="@+id/opt_battery"
+        android:title="@string/tx_bat_Ueberschrift"/>
     
 
 </menu>

@@ -6,14 +6,19 @@
     android:padding="@dimen/bat_padding" >
 
     <TextView
-        android:id="@+id/textView1"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:textAppearance="@style/ueberschrift"
-        android:text="Test" />
+        android:text="@string/tx_bat_Ueberschrift" />
+
+    <TextView
+        android:id="@+id/tx_battery_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="" />
 
     <ProgressBar
-        android:id="@+id/progressBar1"
+        android:id="@+id/pb_battery_status"
         style="?android:attr/progressBarStyleHorizontal"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content" />
