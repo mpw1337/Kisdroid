@@ -1,0 +1,2 @@
+03-20 16:04:39.829: D/BATTERY(20679): Percentage: 98% Charging:2AC:1 Verbleibend:0
+03-20 16:04:39.849: D/BATTERY(20679): Percentage: -2147483648% Charging:0AC:1 Verbleibend:0
