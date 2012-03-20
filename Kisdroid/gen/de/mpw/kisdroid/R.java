@@ -31,6 +31,8 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f050001;
+        public static final int gps_3df=0x7f05000b;
+        public static final int gps_kf=0x7f05000a;
         public static final int hello=0x7f050000;
         public static final int opt_start_stop=0x7f050009;
         public static final int pf_Server=0x7f050005;

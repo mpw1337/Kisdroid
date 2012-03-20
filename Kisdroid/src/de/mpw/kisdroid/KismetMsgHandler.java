@@ -4,6 +4,7 @@ import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
+import de.mpw.kisdroid.protocols.GPS;
 import de.mpw.kisdroid.protocols.Ssid;
 import de.mpw.kisdroid.protocols.Info;
 
@@ -16,6 +17,7 @@ public class KismetMsgHandler {
 	public static final String ACTION_SSID = "de.mpw.kisdroid.intent.action.SSID";
 	private Set<Ssid> ssid = new HashSet<Ssid>();
 	private Set<Info> status = new HashSet<Info>();
+	private GPS gps;
 
 	public KismetMsgHandler(Context context) {
 		this.ctx = context;
@@ -72,6 +74,10 @@ public class KismetMsgHandler {
 		if (msg.startsWith(Info.IDENTIFIER)) {
 			status.add(new Info(msg));
 			Log.d("info", msg);
+		}
+		if (msg.startsWith(GPS.IDENTIFIER)) {
+			gps = new GPS(msg);
+			Log.d("GPS", gps.toString());
 		}
 	}
 
