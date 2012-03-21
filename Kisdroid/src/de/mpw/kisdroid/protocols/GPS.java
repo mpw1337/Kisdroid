@@ -1,6 +1,5 @@
 package de.mpw.kisdroid.protocols;
 
-import com.google.android.maps.GeoPoint;
 
 public class GPS implements Protocols {
 	public static final String IDENTIFIER = "*GPS";

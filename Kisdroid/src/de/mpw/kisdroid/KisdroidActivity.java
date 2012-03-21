@@ -1,23 +1,17 @@
 package de.mpw.kisdroid;
 
-import de.mpw.kisdroid.protocols.Ssid;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
-import android.app.NotificationManager;
-import android.app.Service;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.View;
-import android.widget.ArrayAdapter;
-import android.widget.ListView;
 import android.widget.TextView;
+import de.mpw.kisdroid.protocols.Ssid;
 
 public class KisdroidActivity extends Activity {
 
