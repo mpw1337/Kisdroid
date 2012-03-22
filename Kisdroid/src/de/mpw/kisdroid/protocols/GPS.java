@@ -12,7 +12,7 @@ public class GPS implements Protocols {
 	private String lon; // Longitude Bsp 8.203
 	private String altitude; // Hoehe mit . Bsp: 145.4
 	private String spd; // Speed
-	private String heading; // Ausrichtung in Grad
+//	private String heading; // Ausrichtung in Grad
 	private String fix; // 0 = kein Fix 3 = 3D Fix
 	// private String satinfo;
 	private String hdop; // Horizontale genauigkeit
@@ -34,6 +34,12 @@ public class GPS implements Protocols {
 		this.connected = mArray[5];
 		this.hdop = mArray[6];
 		this.vdop = mArray[7];
+	}
+	
+	public GPS(String Llat, String Llon, String Laltitude){
+		this.lat = Llat;
+		this.lon = Llon;
+		this.altitude = Laltitude;
 	}
 
 	public String getRaw() {
