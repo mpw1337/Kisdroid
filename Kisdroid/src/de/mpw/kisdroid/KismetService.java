@@ -21,7 +21,7 @@ public class KismetService extends Service {
 	private NotificationManager nManager;
 	private String NTitel = "Kisdroid Service";
 	private String NDetail = "Kisdroid Service läuft";
-	int icon = R.drawable.ic_launcher;
+	int icon = R.drawable.icon;
 	private Notification nBenachrichtigung;
 
 	private final boolean debug = true;
