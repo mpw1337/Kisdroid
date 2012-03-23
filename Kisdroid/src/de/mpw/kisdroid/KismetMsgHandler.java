@@ -8,6 +8,7 @@ import de.mpw.kisdroid.protocols.Battery;
 import de.mpw.kisdroid.protocols.GPS;
 import de.mpw.kisdroid.protocols.Ssid;
 import de.mpw.kisdroid.protocols.Info;
+import de.mpw.kisdroid.protocols.TimeP;
 
 import android.content.Context;
 import android.content.Intent;
@@ -21,6 +22,7 @@ public class KismetMsgHandler {
 	private Set<Info> status = new HashSet<Info>();
 	private GPS gps;
 	private Battery battery;
+	private TimeP time;
 
 	public KismetMsgHandler(Context context) {
 		this.ctx = context;
@@ -90,6 +92,10 @@ public class KismetMsgHandler {
 			bat_intent.putExtra(Battery.EXTRA_PERCENTAGE, battery.getPercentage());
 			ctx.sendBroadcast(bat_intent);
 			
+		}
+		if (msg.startsWith(TimeP.IDENTIFIER)){
+			time = new TimeP(msg);
+			Log.d(TimeP.IDENTIFIER, time.getTime());
 		}
 	}
 
