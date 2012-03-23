@@ -46,7 +46,7 @@ public class KismetService extends Service {
 		// Neues Kismet Client Objekt erstellen
 		mPref = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
 		SERVER = mPref.getString(Einstellungen.KEY_HOST, "127.0.0.1");
-		PORT = mPref.getInt(Einstellungen.KEY_PORT, PORT);
+		PORT = Integer.parseInt(mPref.getString(Einstellungen.KEY_PORT, "2501"));
 		client = new KismetClient(SERVER, PORT, this.getApplicationContext());
 
 		// Notification Manager holen
