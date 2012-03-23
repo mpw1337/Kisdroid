@@ -6,6 +6,7 @@ import android.app.PendingIntent;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
@@ -15,7 +16,7 @@ public class KismetService extends Service {
 	private KismetBinder mBinder;
 	private String TAG = "KISMET Service";
 	private KismetClient client;
-	private String SERVER = "192.168.2.11";
+	private String SERVER = "127.0.0.1";
 	private int PORT = 2501;
 
 	private NotificationManager nManager;
@@ -25,6 +26,7 @@ public class KismetService extends Service {
 	private Notification nBenachrichtigung;
 
 	private final boolean debug = true;
+	private SharedPreferences mPref;
 	private final static int ID_RUNNING = 2304;
 
 	@Override
@@ -42,7 +44,9 @@ public class KismetService extends Service {
 			Log.d(TAG, "OnCreate() aufgerufgen");
 		}
 		// Neues Kismet Client Objekt erstellen
-		getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
+		mPref = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
+		SERVER = mPref.getString(Einstellungen.KEY_HOST, "127.0.0.1");
+		PORT = mPref.getInt(Einstellungen.KEY_PORT, PORT);
 		client = new KismetClient(SERVER, PORT, this.getApplicationContext());
 
 		// Notification Manager holen
