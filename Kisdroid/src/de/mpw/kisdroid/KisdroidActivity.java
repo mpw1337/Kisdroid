@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,9 +20,11 @@ public class KisdroidActivity extends Activity {
 	public String SERVER;
 	public int PORT;
 
+	private SharedPreferences mPref;
 	private TextView tv_Networks;
 	private TextView tv_strength;
 	private TextView tv_mac;
+	private TextView tv_server_port;
 
 	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
 
@@ -60,7 +63,8 @@ public class KisdroidActivity extends Activity {
 		tv_Networks = (TextView) findViewById(R.id.tv_Networks);
 		tv_strength = (TextView) findViewById(R.id.tv_strength);
 		tv_mac = (TextView) findViewById(R.id.tv_mac);
-
+		tv_server_port = (TextView) findViewById(R.id.tv_server_port);
+		mPref = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
 	}
 
 	@Override
@@ -70,6 +74,8 @@ public class KisdroidActivity extends Activity {
 		final IntentFilter filter = new IntentFilter(KismetMsgHandler.ACTION_SSID);
 		// Receiver für die SSID Braodcasts registrieren
 		getApplicationContext().registerReceiver(mBroadcastReceiver, filter);
+		tv_server_port.setText(mPref.getString(Einstellungen.KEY_HOST, "127.0.0.1") + ":"
+				+ mPref.getString(Einstellungen.KEY_PORT, "2501"));
 	}
 
 	@Override
@@ -83,17 +89,6 @@ public class KisdroidActivity extends Activity {
 	// public void onClick(final View view) {
 	//
 	// switch (view.getId()) {
-	// case R.id.sf_start:
-	// SERVER = "192.168.2.11";
-	// PORT = 2501;
-	// // client = new KismetClient(SERVER,PORT);
-	// // client.start();
-	// startService(new Intent(this, KismetService.class));
-	// break;
-	// case R.id.sf_stop:
-	// // client.stopClient();
-	// stopService(new Intent(this, KismetService.class));
-	// break;
 	// default:
 	// break;
 	// }
@@ -120,7 +115,7 @@ public class KisdroidActivity extends Activity {
 			}
 			break;
 		case R.id.opt_battery:
-			startActivity(new Intent(this,BatteryActivity.class));
+			startActivity(new Intent(this, BatteryActivity.class));
 			break;
 		default:
 			break;
