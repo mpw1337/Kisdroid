@@ -5,6 +5,7 @@ import android.content.SharedPreferences.OnSharedPreferenceChangeListener;
 import android.os.Bundle;
 import android.preference.EditTextPreference;
 import android.preference.PreferenceActivity;
+import android.text.InputType;
 
 public class Einstellungen extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 
@@ -36,6 +37,7 @@ public class Einstellungen extends PreferenceActivity implements OnSharedPrefere
 		mPref = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
 		mServer = (EditTextPreference) getPreferenceScreen().findPreference(SERVER_KEY);
 		mPort = (EditTextPreference) getPreferenceScreen().findPreference(SERVER_PORT);
+		mPort.getEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
 		mPort.setSummary(mPref.getString(KEY_PORT, "2501"));
 		mServer.setSummary(mPref.getString(KEY_HOST, "127.0.0.1"));
 
