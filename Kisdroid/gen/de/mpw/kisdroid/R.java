@@ -52,6 +52,7 @@ public final class R {
         public static final int sf_stop=0x7f060003;
         public static final int toast_fehler=0x7f060004;
         public static final int tx_bat_Ueberschrift=0x7f06000c;
+        public static final int tx_server_port=0x7f06000d;
     }
     public static final class style {
         public static final int ueberschrift=0x7f070000;

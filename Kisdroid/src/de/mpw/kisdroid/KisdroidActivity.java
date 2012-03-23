@@ -74,8 +74,11 @@ public class KisdroidActivity extends Activity {
 		final IntentFilter filter = new IntentFilter(KismetMsgHandler.ACTION_SSID);
 		// Receiver für die SSID Braodcasts registrieren
 		getApplicationContext().registerReceiver(mBroadcastReceiver, filter);
-		tv_server_port.setText(mPref.getString(Einstellungen.KEY_HOST, "127.0.0.1") + ":"
-				+ mPref.getString(Einstellungen.KEY_PORT, "2501"));
+		String tx_server_port = getResources().getString(R.string.tx_server_port);
+		tx_server_port = tx_server_port.replace("SERVER",
+				mPref.getString(Einstellungen.KEY_HOST, "127.0.0.1")).replace("PORT",
+				mPref.getString(Einstellungen.KEY_PORT, "2501"));
+		tv_server_port.setText(tx_server_port);
 	}
 
 	@Override
