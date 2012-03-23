@@ -10,8 +10,8 @@ public class Einstellungen extends PreferenceActivity implements OnSharedPrefere
 
 	private static final CharSequence SERVER_KEY = "host";
 	private static final CharSequence SERVER_PORT = "port";
-	private static final String KEY_HOST = "host";
-	private static final String KEY_PORT = "port";
+	public static final String KEY_HOST = "host";
+	public static final String KEY_PORT = "port";
 	EditTextPreference mServer;
 	EditTextPreference mPort;
 	SharedPreferences mPref;
