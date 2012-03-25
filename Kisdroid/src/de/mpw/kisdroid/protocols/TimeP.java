@@ -4,7 +4,7 @@ package de.mpw.kisdroid.protocols;
 public class TimeP implements Protocols {
 	
 	public static final String IDENTIFIER = "*TIME";
-	public static String EXTRA_PERCENTAGE = "BATTERY_PERCENTAGE";
+	public static String EXTRA_TIME = "TIME";
 	public static String CAPABILITY = "!%n ENABLE BATTERY percentage,charging,ac,remaining";
 	private String raw;
 	

@@ -18,6 +18,7 @@ public class KismetMsgHandler {
 	private Context ctx;
 	public static final String ACTION_SSID = "de.mpw.kisdroid.intent.action.SSID";
 	public static final String ACTION_BATTERY = "de.mpw.kisdroid.intent.action.BATTERY";
+	public static final String ACTION_TIME = "de.mpw.kisdroid.intent.action.TIME"; 
 	private Set<Ssid> ssid = new HashSet<Ssid>();
 	private Set<Info> status = new HashSet<Info>();
 	private GPS gps;
@@ -97,6 +98,9 @@ public class KismetMsgHandler {
 		if (msg.startsWith(TimeP.IDENTIFIER)) {
 			time = new TimeP(msg);
 			Log.d(TimeP.IDENTIFIER, time.getTime());
+			Intent time_intent = new Intent(ACTION_TIME);
+			time_intent.putExtra(TimeP.EXTRA_TIME, time.getTime());
+			ctx.sendBroadcast(time_intent);
 		}
 	}
 

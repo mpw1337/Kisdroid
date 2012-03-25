@@ -19,15 +19,16 @@ public final class R {
         public static final int icon=0x7f020001;
     }
     public static final class id {
-        public static final int opt_battery=0x7f09000a;
-        public static final int opt_einstellungen=0x7f090008;
-        public static final int opt_start_stop=0x7f090009;
+        public static final int opt_battery=0x7f09000b;
+        public static final int opt_einstellungen=0x7f090009;
+        public static final int opt_start_stop=0x7f09000a;
         public static final int pb_battery_status=0x7f090001;
-        public static final int pf_Server=0x7f090007;
-        public static final int tv_Networks=0x7f090004;
-        public static final int tv_mac=0x7f090005;
+        public static final int pf_Server=0x7f090008;
+        public static final int tv_Networks=0x7f090005;
+        public static final int tv_mac=0x7f090006;
         public static final int tv_server_port=0x7f090003;
-        public static final int tv_strength=0x7f090006;
+        public static final int tv_strength=0x7f090007;
+        public static final int tv_time=0x7f090004;
         public static final int tx_bat_percent=0x7f090002;
         public static final int tx_battery_status=0x7f090000;
     }

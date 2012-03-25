@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import de.mpw.kisdroid.BroadcastReceiver.BroadcastReceiverTime;
 import de.mpw.kisdroid.protocols.Ssid;
 
 public class KisdroidActivity extends Activity {
@@ -25,7 +26,10 @@ public class KisdroidActivity extends Activity {
 	private TextView tv_strength;
 	private TextView tv_mac;
 	private TextView tv_server_port;
+	private TextView tv_time;
+	
 
+	private BroadcastReceiverTime mBroadcastReceiverTime;
 	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
 
 		@Override
@@ -53,6 +57,7 @@ public class KisdroidActivity extends Activity {
 
 		}
 	};
+	
 
 	/** Called when the activity is first created. */
 	@Override
@@ -64,16 +69,22 @@ public class KisdroidActivity extends Activity {
 		tv_strength = (TextView) findViewById(R.id.tv_strength);
 		tv_mac = (TextView) findViewById(R.id.tv_mac);
 		tv_server_port = (TextView) findViewById(R.id.tv_server_port);
+		tv_time = (TextView) findViewById(R.id.tv_time);
 		mPref = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
+		//Broadcast Receiver für Time initialisieren
+		mBroadcastReceiverTime = new BroadcastReceiverTime(tv_time);
 	}
 
 	@Override
 	protected void onResume() {
 		super.onResume();
 		// Intent Filter für die SSID's erstellen
-		final IntentFilter filter = new IntentFilter(KismetMsgHandler.ACTION_SSID);
+		IntentFilter filter = new IntentFilter(KismetMsgHandler.ACTION_SSID);
 		// Receiver für die SSID Braodcasts registrieren
 		getApplicationContext().registerReceiver(mBroadcastReceiver, filter);
+		// Receiver für die Time Broadcasts registrieren
+		filter = new IntentFilter(KismetMsgHandler.ACTION_TIME);
+		getApplicationContext().registerReceiver(mBroadcastReceiverTime, filter);
 		String tx_server_port = getResources().getString(R.string.tx_server_port);
 		tx_server_port = tx_server_port.replace("SERVER",
 				mPref.getString(Einstellungen.KEY_HOST, "127.0.0.1")).replace("PORT",
@@ -85,6 +96,7 @@ public class KisdroidActivity extends Activity {
 	protected void onPause() {
 		// Receiver für die SSID Bradcasts abmelden
 		getApplicationContext().unregisterReceiver(mBroadcastReceiver);
+		getApplicationContext().unregisterReceiver(mBroadcastReceiverTime);
 		super.onPause();
 	}
 
