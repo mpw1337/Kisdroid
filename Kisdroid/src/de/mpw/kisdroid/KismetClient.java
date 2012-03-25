@@ -136,7 +136,7 @@ public class KismetClient extends Thread {
 				String fromServer = "";
 				while ((fromServer = in.readLine()) != null && running) {
 					// fromServer = in.readLine();
-					System.out.println(fromServer);
+					//System.out.println(fromServer);
 					kmh.parse(fromServer);
 
 					// Wenn ein *SSID Sentece kommt, soll ein Broadcast gesendet

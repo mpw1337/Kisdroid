@@ -34,16 +34,17 @@ public class KismetMsgHandler {
 		 * hinzugefügt
 		 */
 		if (msg.startsWith(Ssid.getIdentifier())) {
-			//Temporäres Ssid Object erzeugen
+			// Temporäres Ssid Object erzeugen
 			Ssid tssid = new Ssid(msg);
-			//doppelt auf false initialisieren
+			// doppelt auf false initialisieren
 			boolean doppelt = false;
-			//Durch alle schon im Array befindlichen Netzwerke gehen und vergleichen
+			// Durch alle schon im Array befindlichen Netzwerke gehen und
+			// vergleichen
 			for (Iterator<Ssid> iterator = ssid.iterator(); iterator.hasNext();) {
 				Ssid type = (Ssid) iterator.next();
-				//Falls die Mac Adresse, oder die SSID gleich sind als doppelt markieren
-				if ((type.getMac().equals(tssid.getMac()))
-						| (type.getSsid().equals(tssid.getSsid()))) {
+				// Falls die Mac Adresse, oder die SSID gleich sind als doppelt
+				// markieren
+				if ((type.getMac().equals(tssid.getMac()))) {
 					doppelt = true;
 					// Log.d("KISDROID_DOPPELTE", type.getMac() + tssid.getMac()
 					// + " SSID: " + type.getSsid() + " und " +
@@ -55,12 +56,12 @@ public class KismetMsgHandler {
 			if (!doppelt) {
 				ssid.add(tssid);
 			}
-			//Intent vorbereiten um die Netzwerke zu übermitteln
+			// Intent vorbereiten um die Netzwerke zu übermitteln
 			Intent intent = new Intent(ACTION_SSID);
 			String[] temp = new String[ssid.size()];
 			String[] strength = new String[ssid.size()];
 			String[] mac = new String[ssid.size()];
-			
+
 			int i = 0;
 			for (Iterator<Ssid> iterator = ssid.iterator(); iterator.hasNext();) {
 				Ssid type = (Ssid) iterator.next();
@@ -84,16 +85,16 @@ public class KismetMsgHandler {
 			gps = new GPS(msg);
 			Log.d("GPS", gps.toString());
 		}
-		
-		if (msg.startsWith(Battery.IDENTIFIER)){
+
+		if (msg.startsWith(Battery.IDENTIFIER)) {
 			battery = new Battery(msg);
 			Log.d("BATTERY", battery.toString());
 			Intent bat_intent = new Intent(ACTION_BATTERY);
 			bat_intent.putExtra(Battery.EXTRA_PERCENTAGE, battery.getPercentage());
 			ctx.sendBroadcast(bat_intent);
-			
+
 		}
-		if (msg.startsWith(TimeP.IDENTIFIER)){
+		if (msg.startsWith(TimeP.IDENTIFIER)) {
 			time = new TimeP(msg);
 			Log.d(TimeP.IDENTIFIER, time.getTime());
 		}
