@@ -4,6 +4,8 @@ package de.mpw.kisdroid.protocols;
 public class GPS implements Protocols {
 	public static final String IDENTIFIER = "*GPS";
 	public static String EXTRA = "GPS";
+	public static String EXTRA_LAT = "GPS_LAT";
+	public static String EXTRA_LON = "GPS_LON";
 	public static String CAPABILITY = "!%n ENABLE GPS lat,lon,alt,spd,fix,connected,hdop,vdop";
 	// GPS lat,lon,alt,spd,heading,fix,satinfo,hdop,vdop,connected
 	private String raw;
