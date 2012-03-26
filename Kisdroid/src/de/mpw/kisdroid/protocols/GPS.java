@@ -38,11 +38,13 @@ public class GPS implements Protocols {
 		this.vdop = mArray[7];
 	}
 	
-	public GPS(String Llat, String Llon, String Laltitude){
+	public GPS(String Llat, String Llon, String Laltitude,String Lspeed,String lfix){
 		this.lat = Llat;
 		this.lon = Llon;
 		this.altitude = Laltitude;
+		this.spd = Lspeed;
 	}
+	
 
 	public String getRaw() {
 		// TODO Auto-generated method stub

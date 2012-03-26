@@ -78,29 +78,76 @@ package de.mpw.kisdroid.protocols;
  */
 public class Bssid implements Protocols {
 
-	public static final String CAPABILITY = "BSSID bssid,type,llcpackets,datapackets,cryptpackets,manuf,channel,"
+	public static final String CAPABILITY = "!%n ENABLE BSSID bssid,type,llcpackets,datapackets,cryptpackets,manuf,channel,"
 			+ "firsttime,lasttime,atype,rangeip,netmaskip,gatewayip,"
 			+ "gpsfixed,minlat,minlon,minalt,minspd,"
 			+ "maxlat,maxlon,maxalt,maxspd,"
 			+ "signal_dbm,noise_dbm,minsignal_dbm,minnoise_dbm,"
 			+ "maxsignal_dbm,maxnoise_dbm,signal_rssi,noise_rssi,"
-			+ "minsignal_rssi,minnoise_rssi,maxsignal_rssi, maxnoise_rssi,"
+			+ "minsignal_rssi,minnoise_rssi,maxsignal_rssi,maxnoise_rssi,"
 			+ "bestlat,bestlon,bestalt,agglat,agglon,aggalt,aggpoints,"
-			+ "datasize,turbocellnid,turbocellmode,turbocellsat,carrierset,"
-			+ "maxseenrate,encodingset,decrypted,dupeivpackets,bsstimestamp,"			
-			+ "cdpdevice,cdpport,fragments,retries,newpackets,freqmhz,datacryptset";
+			+ "datasize,"
+			+ "maxseenrate,encodingset,decrypted,bsstimestamp,"
+			+ "fragments,retries,newpackets,freqmhz,datacryptset";
+	// public static final String CAPABILITY =
+	// "!%n ENABLE BSSID bssid,type,llcpackets,datapackets,cryptpackets,manuf,channel,"
+	// + "firsttime,lasttime,atype,rangeip,netmaskip,gatewayip,"
+	// + "gpsfixed,minlat,minlon,minalt,minspd,"
+	// + "maxlat,maxlon,maxalt,maxspd,"
+	// + "signal_dbm,noise_dbm,minsignal_dbm,minnoise_dbm,"
+	// + "maxsignal_dbm,maxnoise_dbm,signal_rssi,noise_rssi,"
+	// + "minsignal_rssi,minnoise_rssi,maxsignal_rssi,maxnoise_rssi,"
+	// + "bestlat,bestlon,bestalt,agglat,agglon,aggalt,aggpoints,"
+	// + "datasize,turbocellnid,turbocellmode,turbocellsat,carrierset,"
+	// + "maxseenrate,encodingset,decrypted,dupeivpackets,bsstimestamp,"
+	// + "cdpdevice,cdpport,fragments,retries,newpackets,freqmhz,datacryptset";
 
 	private GPS mMinGps;
 	private GPS mMaxGps;
 	private GPS mBestGps;
 	private String raw;
+	private String mMac;
+	private Integer type;
+	private Integer llcpackets;
+	private Integer datapackets;
+	private Integer cryptpackets;
+	private String manufactor;
+	private Integer channel;
+	private Integer firsttime;
+	private Integer lasttime;
+	private Integer atype;
+	private String rangeip;
+	private String netmaskip;
+	private String gatewayip;
+	private Integer gpsfixed;
+	private int datasize;
+	private Integer bsstimestamp;
+	
 
-	public Bssid(String string){
+	public Bssid(String string) {
 		this.raw = string;
+		String[] mArray;
+		String[] temp = raw.split(":", 2);
+		// mArray = temp[1].indexOf("\x01", start)
+		temp[1] = temp[1].trim();
+		mArray = temp[1].split(" ");
+		this.mMac = mArray[0];
+		this.type = Integer.parseInt(mArray[1]);
+		this.mMinGps = new GPS(mArray[14],mArray[15],mArray[16],mArray[17],mArray[13]);
 		
+
 	}
+
 	public String getRaw() {
 		return raw;
 	}
+	
+	public String toString() {
+		return "Mac: "+mMac+" Typ: " + type + "Min GPS:" + mMinGps.toString();
+	}
 
 }
+// !0 ENABLE BSSID
+// bssid,type,llcpackets,datapackets,cryptpackets,manuf,channel,firsttime,lasttime,atype,rangeip,netmaskip,gatewayip,gpsfixed,minlat,minlon,minalt,minspd,maxlat,maxlon,maxalt,maxspd,signal_dbm,noise_dbm,minsignal_dbm,minnoise_dbm,maxsignal_dbm,maxnoise_dbm,signal_rssi,noise_rssi,minsignal_rssi,minnoise_rssi,maxsignal_rssi,
+// maxnoise_rssi,bestlat,bestlon,bestalt,agglat,agglon,aggalt,aggpoints,datasize,turbocellnid,turbocellmode,turbocellsat,carrierset,maxseenrate,encodingset,decrypted,dupeivpackets,bsstimestamp,cdpdevice,cdpport,fragments,retries,newpackets,freqmhz,datacryptset
+
