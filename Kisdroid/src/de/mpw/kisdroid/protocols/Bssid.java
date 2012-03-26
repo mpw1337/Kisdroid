@@ -95,6 +95,10 @@ public class Bssid implements Protocols {
 	private GPS mBestGps;
 	private String raw;
 
+	public Bssid(String string){
+		this.raw = string;
+		
+	}
 	public String getRaw() {
 		return raw;
 	}
