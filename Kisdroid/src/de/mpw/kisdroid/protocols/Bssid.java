@@ -151,11 +151,16 @@ public class Bssid implements Protocols {
 		return raw;
 	}
 
+	public String getMac() {
+		return mMac;
+	}
+
 	public String toString() {
 		return "Mac: " + mMac + " Typ: " + type + "Channel: " + channel + "Min GPS:"
 				+ mMinGps.toString() + "RangeIP: " + rangeip.toString() + " Netmask: "
 				+ netmaskip.toString() + "Gateway IP: " + gatewayip.toString();
 	}
+
 
 }
 // !0 ENABLE BSSID
