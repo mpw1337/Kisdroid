@@ -46,6 +46,12 @@ public class GPS implements Protocols {
 	}
 	
 
+	public GPS(String Llat, String Llon, String Laltitude) {
+		this.lat = Llat;
+		this.lon = Llon;
+		this.altitude = Laltitude;
+	}
+
 	public String getRaw() {
 		// TODO Auto-generated method stub
 		return raw;

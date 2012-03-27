@@ -105,7 +105,6 @@ public class Bssid implements Protocols {
 	// + "maxseenrate,encodingset,decrypted,dupeivpackets,bsstimestamp,"
 	// + "cdpdevice,cdpport,fragments,retries,newpackets,freqmhz,datacryptset";
 
-
 	private GPS mMinGps;
 	private GPS mMaxGps;
 	private GPS mBestGps;
@@ -136,10 +135,15 @@ public class Bssid implements Protocols {
 		mArray = temp[1].split(" ");
 		this.mMac = mArray[0];
 		this.type = Integer.parseInt(mArray[1]);
-		this.mMinGps = new GPS(mArray[14], mArray[15], mArray[16], mArray[17], mArray[13]);
+		this.manufactor = mArray[5];
+		this.channel = Integer.decode(mArray[6]);
 		this.rangeip = new Ip(mArray[10]);
 		this.netmaskip = new Ip(mArray[11]);
 		this.gatewayip = new Ip(mArray[12]);
+		this.gpsfixed = Integer.decode(mArray[13]);		
+		this.mMinGps = new GPS(mArray[14], mArray[15], mArray[16], mArray[17], mArray[13]);
+		this.mMaxGps = new GPS(mArray[18],mArray[19],mArray[20],mArray[21],mArray[13]);
+		this.mBestGps = new GPS(mArray[34],mArray[35],mArray[36]);
 
 	}
 
@@ -148,9 +152,9 @@ public class Bssid implements Protocols {
 	}
 
 	public String toString() {
-		return "Mac: " + mMac + " Typ: " + type + "Min GPS:" + mMinGps.toString() + "RangeIP: "
-				+ rangeip.toString() + " Netmask: " + netmaskip.toString() + "Gateway IP: "
-				+ gatewayip.toString();
+		return "Mac: " + mMac + " Typ: " + type + "Channel: " + channel + "Min GPS:"
+				+ mMinGps.toString() + "RangeIP: " + rangeip.toString() + " Netmask: "
+				+ netmaskip.toString() + "Gateway IP: " + gatewayip.toString();
 	}
 
 }
