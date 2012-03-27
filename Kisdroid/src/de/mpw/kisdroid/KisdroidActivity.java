@@ -12,6 +12,7 @@ import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.TextView;
+import de.mpw.kisdroid.BroadcastReceiver.BroadcastReceiverSsid;
 import de.mpw.kisdroid.BroadcastReceiver.BroadcastReceiverTime;
 import de.mpw.kisdroid.protocols.Ssid;
 
@@ -27,37 +28,9 @@ public class KisdroidActivity extends Activity {
 	private TextView tv_mac;
 	private TextView tv_server_port;
 	private TextView tv_time;
-	
 
 	private BroadcastReceiverTime mBroadcastReceiverTime;
-	private BroadcastReceiver mBroadcastReceiver = new BroadcastReceiver() {
-
-		@Override
-		public void onReceive(Context context, Intent intent) {
-			// TODO Auto-generated method stub
-			/*
-			 * tv_Networks.setText(intent.getExtras().getString("SSID"));
-			 */
-			tv_Networks.setText("");
-			String[] networks = intent.getExtras().getStringArray(Ssid.EXTRA);
-			for (String ssid : networks) {
-				// Log.d(getLocalClassName(), ssid);
-				tv_Networks.append("\n " + ssid);
-			}
-			tv_strength.setText("");
-			String[] maxstrength = intent.getStringArrayExtra(Ssid.EXTRA_MAXSTRENGTH);
-			for (String strength : maxstrength) {
-				tv_strength.append("\n" + strength);
-			}
-			tv_mac.setText("");
-			String[] mac = intent.getStringArrayExtra(Ssid.EXTRA_MAC);
-			for (String string : mac) {
-				tv_mac.append("\n" + string);
-			}
-
-		}
-	};
-	
+	private BroadcastReceiverSsid mBroadcastReceiverSsid;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -71,8 +44,9 @@ public class KisdroidActivity extends Activity {
 		tv_server_port = (TextView) findViewById(R.id.tv_server_port);
 		tv_time = (TextView) findViewById(R.id.tv_time);
 		mPref = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
-		//Broadcast Receiver für Time initialisieren
+		// Broadcast Receiver für Time initialisieren
 		mBroadcastReceiverTime = new BroadcastReceiverTime(tv_time);
+		mBroadcastReceiverSsid = new BroadcastReceiverSsid(tv_Networks, tv_strength, tv_mac);
 	}
 
 	@Override
@@ -81,7 +55,8 @@ public class KisdroidActivity extends Activity {
 		// Intent Filter für die SSID's erstellen
 		IntentFilter filter = new IntentFilter(KismetMsgHandler.ACTION_SSID);
 		// Receiver für die SSID Braodcasts registrieren
-		getApplicationContext().registerReceiver(mBroadcastReceiver, filter);
+		getApplicationContext().registerReceiver(mBroadcastReceiverSsid, filter);
+
 		// Receiver für die Time Broadcasts registrieren
 		filter = new IntentFilter(KismetMsgHandler.ACTION_TIME);
 		getApplicationContext().registerReceiver(mBroadcastReceiverTime, filter);
@@ -95,7 +70,7 @@ public class KisdroidActivity extends Activity {
 	@Override
 	protected void onPause() {
 		// Receiver für die SSID Bradcasts abmelden
-		getApplicationContext().unregisterReceiver(mBroadcastReceiver);
+		getApplicationContext().unregisterReceiver(mBroadcastReceiverSsid);
 		getApplicationContext().unregisterReceiver(mBroadcastReceiverTime);
 		super.onPause();
 	}
