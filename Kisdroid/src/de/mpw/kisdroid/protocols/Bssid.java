@@ -112,6 +112,7 @@ public class Bssid implements Protocols {
 	private Signal mSignalDbm;
 	private String raw;
 	private String mMac;
+	private String encryption;
 	private Integer type;
 	private Integer llcpackets;
 	private Integer datapackets;
@@ -147,7 +148,20 @@ public class Bssid implements Protocols {
 		this.mMaxGps = new GPS(mArray[18], mArray[19], mArray[20], mArray[21], mArray[13]);
 		this.mBestGps = new GPS(mArray[34], mArray[35], mArray[36]);
 		this.mSignalDbm = new Signal(mArray[22], mArray[23]);
+		setEncodingset(mArray[43]);
 
+	}
+
+	private void setEncodingset(String string) {
+		if (string.equals("3")) {
+			this.encryption = "WPA2";
+		} else {
+			if (string.equals("2")) {
+				this.encryption = "WPA";
+			} else {
+				this.encryption = "none/WEP";
+			}
+		}
 	}
 
 	public String getRaw() {
@@ -164,6 +178,10 @@ public class Bssid implements Protocols {
 
 	public String getSignalDbm() {
 		return mSignalDbm.getSignal();
+	}
+
+	public String getEncryption() {
+		return encryption;
 	}
 
 	public String toString() {
