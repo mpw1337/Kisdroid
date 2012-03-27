@@ -13,7 +13,7 @@ public class Ip {
 	 */
 	public Ip(String adresse) {
 		String[] mTemp = adresse.split(".");
-		//String in die einzelnen Teile zerlegen
+		// String in die einzelnen Teile zerlegen
 		for (int i = 0; i < mTemp.length; i++) {
 			try {
 				mAdresse[i] = Integer.valueOf(mTemp[i]);
@@ -22,8 +22,16 @@ public class Ip {
 			}
 		}
 	}
-	public Integer[] getIP(){
+
+	public Integer[] getIP() {
 		return mAdresse;
 	}
 
+	public String toString() {
+		String mTemp = "";
+		for (Integer teil : mAdresse) {
+			mTemp = mTemp + ":" + teil.toString();
+		}
+		return mTemp.substring(1);
+	}
 }
