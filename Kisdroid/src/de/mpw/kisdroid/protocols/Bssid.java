@@ -154,6 +154,9 @@ public class Bssid implements Protocols {
 	public String getMac() {
 		return mMac;
 	}
+	public String getManufactor() {
+		return manufactor;
+	}
 
 	public String toString() {
 		return "Mac: " + mMac + " Typ: " + type + "Channel: " + channel + "Min GPS:"

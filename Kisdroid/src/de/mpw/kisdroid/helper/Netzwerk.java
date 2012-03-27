@@ -37,6 +37,7 @@ public class Netzwerk {
 			return false;
 		}
 	}
+
 	public boolean addBssid(Bssid bssid) {
 		if (mac.equals(bssid.getMac())) {
 			mBssid = bssid;
@@ -44,6 +45,14 @@ public class Netzwerk {
 		} else {
 			return false;
 		}
+	}
+
+	public Ssid getSsid() {
+		return mSsid;
+	}
+
+	public Bssid getBssid() {
+		return mBssid;
 	}
 
 }
