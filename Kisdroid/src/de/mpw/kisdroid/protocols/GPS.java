@@ -15,7 +15,7 @@ public class GPS implements Protocols {
 	private String altitude; // Hoehe mit . Bsp: 145.4
 	private String spd; // Speed
 //	private String heading; // Ausrichtung in Grad
-	private String fix; // 0 = kein Fix 3 = 3D Fix
+	private String fix; // 0 = kein Fix 3 = 3D Fix -1 = NO FIX
 	// private String satinfo;
 	private String hdop; // Horizontale genauigkeit
 	private String vdop; // Vertikale Genauigkeit
