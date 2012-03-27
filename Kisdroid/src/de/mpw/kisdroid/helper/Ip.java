@@ -7,12 +7,15 @@ package de.mpw.kisdroid.helper;
 public class Ip {
 
 	Integer[] mAdresse = new Integer[4];
+	String raw;
 
 	/**
 	 * Dem Construktor wird ein String der Form "144.123.0.3" übergeben.
 	 */
 	public Ip(String adresse) {
-		String[] mTemp = adresse.split(".");
+		String[] mTemp;
+		this.raw = adresse;
+		mTemp = adresse.split(".");
 		// String in die einzelnen Teile zerlegen
 		for (int i = 0; i < mTemp.length; i++) {
 			try {
@@ -28,10 +31,11 @@ public class Ip {
 	}
 
 	public String toString() {
-		String mTemp = "";
-		for (Integer teil : mAdresse) {
-			mTemp = mTemp + ":" + teil.toString();
-		}
-		return mTemp.substring(1);
+		return raw;
+		// String mTemp = "";
+		// for (Integer teil : mAdresse) {
+		// mTemp = mTemp + ":" + teil.toString();
+		// }
+		// return mTemp.substring(1);
 	}
 }
