@@ -17,6 +17,7 @@ import android.util.Log;
 public class KismetMsgHandler {
 	private Context ctx;
 	public static final String ACTION_SSID = "de.mpw.kisdroid.intent.action.SSID";
+	public static final String ACTION_BSSID = "de.mpw.kisdroid.intent.action.BSSID";
 	public static final String ACTION_BATTERY = "de.mpw.kisdroid.intent.action.BATTERY";
 	public static final String ACTION_TIME = "de.mpw.kisdroid.intent.action.TIME"; 
 	private Set<Ssid> ssid = new HashSet<Ssid>();

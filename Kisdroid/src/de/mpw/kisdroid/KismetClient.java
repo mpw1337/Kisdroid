@@ -9,6 +9,7 @@ import java.net.Socket;
 import java.net.UnknownHostException;
 
 import de.mpw.kisdroid.protocols.Battery;
+import de.mpw.kisdroid.protocols.Bssid;
 import de.mpw.kisdroid.protocols.GPS;
 import de.mpw.kisdroid.protocols.Info;
 import de.mpw.kisdroid.protocols.Ssid;
@@ -100,6 +101,8 @@ public class KismetClient extends Thread {
 			out.println(GPS.CAPABILITY.replace("%n", "4"));
 			//Battery aktivieren
 			out.println(Battery.CAPABILITY.replace("%n", "5"));
+			//BSSID aktivieren
+			out.println(Bssid.CAPABILITY.replace("%n", "6"));
 			
 
 			// out.println("!3 ENABLE TIME");

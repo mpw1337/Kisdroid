@@ -1,5 +1,7 @@
 package de.mpw.kisdroid.protocols;
 
+import de.mpw.kisdroid.helper.Ip;
+
 /*
  * bssid,type,llcpackets,datapackets,cryptpackets,manuf,channel,firsttime,lasttime,atype,rangeip,netmaskip,gatewayip,gpsfixed,minlat,minlon,minalt,minspd,maxlat,maxlon,maxalt,maxspd,signal_dbm,noise_dbm,minsignal_dbm,minnoise_dbm,maxsignal_dbm,maxnoise_dbm,signal_rssi,noise_rssi,minsignal_rssi,minnoise_rssi,maxsignal_rssi,maxnoise_rssi,bestlat,bestlon,bestalt,agglat,agglon,aggalt,aggpoints,datasize,turbocellnid,turbocellmode,turbocellsat,carrierset,maxseenrate,encodingset,decrypted,dupeivpackets,bsstimestamp,cdpdevice,cdpport,fragments,retries,newpackets,freqmhz,datacryptset
  */
@@ -116,13 +118,12 @@ public class Bssid implements Protocols {
 	private Integer firsttime;
 	private Integer lasttime;
 	private Integer atype;
-	private String rangeip;
-	private String netmaskip;
-	private String gatewayip;
+	private Ip rangeip;
+	private Ip netmaskip;
+	private Ip gatewayip;
 	private Integer gpsfixed;
 	private int datasize;
 	private Integer bsstimestamp;
-	
 
 	public Bssid(String string) {
 		this.raw = string;
@@ -133,17 +134,21 @@ public class Bssid implements Protocols {
 		mArray = temp[1].split(" ");
 		this.mMac = mArray[0];
 		this.type = Integer.parseInt(mArray[1]);
-		this.mMinGps = new GPS(mArray[14],mArray[15],mArray[16],mArray[17],mArray[13]);
-		
+		this.mMinGps = new GPS(mArray[14], mArray[15], mArray[16], mArray[17], mArray[13]);
+		this.rangeip = new Ip(mArray[10]);
+		this.netmaskip = new Ip(mArray[11]);
+		this.gatewayip = new Ip(mArray[12]);
 
 	}
 
 	public String getRaw() {
 		return raw;
 	}
-	
+
 	public String toString() {
-		return "Mac: "+mMac+" Typ: " + type + "Min GPS:" + mMinGps.toString();
+		return "Mac: " + mMac + " Typ: " + type + "Min GPS:" + mMinGps.toString() + "RangeIP: "
+				+ rangeip.toString() + " Netmask: " + netmaskip.toString() + "Gateway IP: "
+				+ gatewayip.toString();
 	}
 
 }
