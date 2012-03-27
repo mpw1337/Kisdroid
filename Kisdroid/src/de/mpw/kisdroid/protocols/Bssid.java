@@ -1,6 +1,7 @@
 package de.mpw.kisdroid.protocols;
 
 import de.mpw.kisdroid.helper.Ip;
+import de.mpw.kisdroid.helper.Signal;
 
 /*
  * bssid,type,llcpackets,datapackets,cryptpackets,manuf,channel,firsttime,lasttime,atype,rangeip,netmaskip,gatewayip,gpsfixed,minlat,minlon,minalt,minspd,maxlat,maxlon,maxalt,maxspd,signal_dbm,noise_dbm,minsignal_dbm,minnoise_dbm,maxsignal_dbm,maxnoise_dbm,signal_rssi,noise_rssi,minsignal_rssi,minnoise_rssi,maxsignal_rssi,maxnoise_rssi,bestlat,bestlon,bestalt,agglat,agglon,aggalt,aggpoints,datasize,turbocellnid,turbocellmode,turbocellsat,carrierset,maxseenrate,encodingset,decrypted,dupeivpackets,bsstimestamp,cdpdevice,cdpport,fragments,retries,newpackets,freqmhz,datacryptset
@@ -108,6 +109,7 @@ public class Bssid implements Protocols {
 	private GPS mMinGps;
 	private GPS mMaxGps;
 	private GPS mBestGps;
+	private Signal mSignalDbm;
 	private String raw;
 	private String mMac;
 	private Integer type;
@@ -140,10 +142,11 @@ public class Bssid implements Protocols {
 		this.rangeip = new Ip(mArray[10]);
 		this.netmaskip = new Ip(mArray[11]);
 		this.gatewayip = new Ip(mArray[12]);
-		this.gpsfixed = Integer.decode(mArray[13]);		
+		this.gpsfixed = Integer.decode(mArray[13]);
 		this.mMinGps = new GPS(mArray[14], mArray[15], mArray[16], mArray[17], mArray[13]);
-		this.mMaxGps = new GPS(mArray[18],mArray[19],mArray[20],mArray[21],mArray[13]);
-		this.mBestGps = new GPS(mArray[34],mArray[35],mArray[36]);
+		this.mMaxGps = new GPS(mArray[18], mArray[19], mArray[20], mArray[21], mArray[13]);
+		this.mBestGps = new GPS(mArray[34], mArray[35], mArray[36]);
+		this.mSignalDbm = new Signal(mArray[22], mArray[23]);
 
 	}
 
@@ -154,8 +157,13 @@ public class Bssid implements Protocols {
 	public String getMac() {
 		return mMac;
 	}
+
 	public String getManufactor() {
 		return manufactor;
+	}
+
+	public String getSignalDbm() {
+		return mSignalDbm.getSignal();
 	}
 
 	public String toString() {
@@ -163,7 +171,6 @@ public class Bssid implements Protocols {
 				+ mMinGps.toString() + "RangeIP: " + rangeip.toString() + " Netmask: "
 				+ netmaskip.toString() + "Gateway IP: " + gatewayip.toString();
 	}
-
 
 }
 // !0 ENABLE BSSID

@@ -5,6 +5,7 @@ import java.util.HashSet;
 import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Set;
+import java.util.Timer;
 
 import de.mpw.kisdroid.helper.Netzwerk;
 import de.mpw.kisdroid.protocols.Battery;
@@ -41,50 +42,52 @@ public class KismetMsgHandler {
 		 * Wenn die Nachricht vom Typ SSID war wird sie zur Liste der Netzwerke
 		 * hinzugefügt
 		 */
-//		if (msg.startsWith(Ssid.getIdentifier())) {
-//			// Temporäres Ssid Object erzeugen
-//			Ssid tssid = new Ssid(msg);
-//			// doppelt auf false initialisieren
-//			boolean doppelt = false;
-//			// Durch alle schon im Array befindlichen Netzwerke gehen und
-//			// vergleichen
-//			for (Iterator<Ssid> iterator = ssid.iterator(); iterator.hasNext();) {
-//				Ssid type = (Ssid) iterator.next();
-//				// Falls die Mac Adresse, oder die SSID gleich sind als doppelt
-//				// markieren
-//				if ((type.getMac().equals(tssid.getMac()))) {
-//					doppelt = true;
-//					// Log.d("KISDROID_DOPPELTE", type.getMac() + tssid.getMac()
-//					// + " SSID: " + type.getSsid() + " und " +
-//					// tssid.getSsid());
-//					break;
-//				}
-//
-//			}
-//			if (!doppelt) {
-//				ssid.add(tssid);
-//			}
-//			// Intent vorbereiten um die Netzwerke zu übermitteln
-//			Intent intent = new Intent(ACTION_SSID);
-//			String[] temp = new String[ssid.size()];
-//			String[] strength = new String[ssid.size()];
-//			String[] mac = new String[ssid.size()];
-//
-//			int i = 0;
-//			for (Iterator<Ssid> iterator = ssid.iterator(); iterator.hasNext();) {
-//				Ssid type = (Ssid) iterator.next();
-//				temp[i] = type.getSsid();
-//				strength[i] = type.getMaxRate();
-//				mac[i] = type.getMac();
-//				i++;
-//			}
-//			intent.putExtra(Ssid.EXTRA, temp);
-//			intent.putExtra(Ssid.EXTRA_MAXSTRENGTH, strength);
-//			intent.putExtra(Ssid.EXTRA_MAC, mac);
-//			// intent.putExtra("OBJECT", object);
-//
-//			ctx.sendBroadcast(intent);
-//		}
+		// if (msg.startsWith(Ssid.getIdentifier())) {
+		// // Temporäres Ssid Object erzeugen
+		// Ssid tssid = new Ssid(msg);
+		// // doppelt auf false initialisieren
+		// boolean doppelt = false;
+		// // Durch alle schon im Array befindlichen Netzwerke gehen und
+		// // vergleichen
+		// for (Iterator<Ssid> iterator = ssid.iterator(); iterator.hasNext();)
+		// {
+		// Ssid type = (Ssid) iterator.next();
+		// // Falls die Mac Adresse, oder die SSID gleich sind als doppelt
+		// // markieren
+		// if ((type.getMac().equals(tssid.getMac()))) {
+		// doppelt = true;
+		// // Log.d("KISDROID_DOPPELTE", type.getMac() + tssid.getMac()
+		// // + " SSID: " + type.getSsid() + " und " +
+		// // tssid.getSsid());
+		// break;
+		// }
+		//
+		// }
+		// if (!doppelt) {
+		// ssid.add(tssid);
+		// }
+		// // Intent vorbereiten um die Netzwerke zu übermitteln
+		// Intent intent = new Intent(ACTION_SSID);
+		// String[] temp = new String[ssid.size()];
+		// String[] strength = new String[ssid.size()];
+		// String[] mac = new String[ssid.size()];
+		//
+		// int i = 0;
+		// for (Iterator<Ssid> iterator = ssid.iterator(); iterator.hasNext();)
+		// {
+		// Ssid type = (Ssid) iterator.next();
+		// temp[i] = type.getSsid();
+		// strength[i] = type.getMaxRate();
+		// mac[i] = type.getMac();
+		// i++;
+		// }
+		// intent.putExtra(Ssid.EXTRA, temp);
+		// intent.putExtra(Ssid.EXTRA_MAXSTRENGTH, strength);
+		// intent.putExtra(Ssid.EXTRA_MAC, mac);
+		// // intent.putExtra("OBJECT", object);
+		//
+		// ctx.sendBroadcast(intent);
+		// }
 
 		if (msg.startsWith(Bssid.IDENTIFIER)) {
 			Bssid tbssid = new Bssid(msg);
@@ -108,7 +111,6 @@ public class KismetMsgHandler {
 				netzwerke.put(tssid.getMac(), new Netzwerk(tssid));
 			}
 			Log.d("SSID", String.valueOf(netzwerke.size()));
-			sendNetzwerkBroadcast();
 
 		}
 		if (msg.startsWith(Info.IDENTIFIER)) {
@@ -135,6 +137,7 @@ public class KismetMsgHandler {
 			time_intent.putExtra(TimeP.EXTRA_TIME, time.getTime());
 			ctx.sendBroadcast(time_intent);
 		}
+		sendNetzwerkBroadcast();
 	}
 
 	public Set<Ssid> getssid() {
@@ -152,9 +155,10 @@ public class KismetMsgHandler {
 		Collection<Netzwerk> daten = netzwerke.values();
 		for (Iterator<Netzwerk> iterator = daten.iterator(); iterator.hasNext();) {
 			Netzwerk netzwerk = (Netzwerk) iterator.next();
-			if((netzwerk.getSsid()!= null) && (netzwerk.getBssid() != null)){
+			if ((netzwerk.getSsid() != null) && (netzwerk.getBssid() != null)) {
 				temp[i] = netzwerk.getSsid().getSsid();
 				mac[i] = netzwerk.mac;
+				strength[i] = netzwerk.getBssid().getSignalDbm();
 			}
 			i++;
 
