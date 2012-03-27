@@ -150,6 +150,7 @@ public class KismetMsgHandler {
 		String[] temp = new String[netzwerke.size()];
 		String[] strength = new String[netzwerke.size()];
 		String[] mac = new String[netzwerke.size()];
+		String[] encryption = new String[netzwerke.size()];
 
 		int i = 0;
 		Collection<Netzwerk> daten = netzwerke.values();
@@ -159,6 +160,7 @@ public class KismetMsgHandler {
 				temp[i] = netzwerk.getSsid().getSsid();
 				mac[i] = netzwerk.mac;
 				strength[i] = netzwerk.getBssid().getSignalDbm();
+				encryption[i] = netzwerk.getBssid().getEncryption();
 			}
 			i++;
 
@@ -166,6 +168,7 @@ public class KismetMsgHandler {
 		intent.putExtra(Ssid.EXTRA, temp);
 		intent.putExtra(Ssid.EXTRA_MAXSTRENGTH, strength);
 		intent.putExtra(Ssid.EXTRA_MAC, mac);
+		intent.putExtra(Bssid.EXTRA_ENCRYPTION, encryption);
 		// intent.putExtra("OBJECT", object);
 
 		ctx.sendBroadcast(intent);

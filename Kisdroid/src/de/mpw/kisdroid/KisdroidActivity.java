@@ -28,6 +28,7 @@ public class KisdroidActivity extends Activity {
 	private TextView tv_mac;
 	private TextView tv_server_port;
 	private TextView tv_time;
+	private TextView tv_encryption;
 
 	private BroadcastReceiverTime mBroadcastReceiverTime;
 	private BroadcastReceiverSsid mBroadcastReceiverSsid;
@@ -43,10 +44,11 @@ public class KisdroidActivity extends Activity {
 		tv_mac = (TextView) findViewById(R.id.tv_mac);
 		tv_server_port = (TextView) findViewById(R.id.tv_server_port);
 		tv_time = (TextView) findViewById(R.id.tv_time);
+		tv_encryption = (TextView) findViewById(R.id.tv_encryption);
 		mPref = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
 		// Broadcast Receiver für Time initialisieren
 		mBroadcastReceiverTime = new BroadcastReceiverTime(tv_time);
-		mBroadcastReceiverSsid = new BroadcastReceiverSsid(tv_Networks, tv_strength, tv_mac);
+		mBroadcastReceiverSsid = new BroadcastReceiverSsid(tv_Networks, tv_strength, tv_mac,tv_encryption);
 	}
 
 	@Override

@@ -82,6 +82,7 @@ import de.mpw.kisdroid.helper.Signal;
 public class Bssid implements Protocols {
 
 	public static final String IDENTIFIER = "*BSSID";
+	public static final String EXTRA_ENCRYPTION = "EXTRA_ENCRYPION";
 	public static final String CAPABILITY = "!%n ENABLE BSSID bssid,type,llcpackets,datapackets,cryptpackets,manuf,channel,"
 			+ "firsttime,lasttime,atype,rangeip,netmaskip,gatewayip,"
 			+ "gpsfixed,minlat,minlon,minalt,minspd,"

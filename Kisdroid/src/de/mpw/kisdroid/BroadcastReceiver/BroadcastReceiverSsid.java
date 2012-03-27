@@ -4,22 +4,25 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.TextView;
+import de.mpw.kisdroid.protocols.Bssid;
 import de.mpw.kisdroid.protocols.Ssid;
 
 public class BroadcastReceiverSsid extends BroadcastReceiver {
 
 	private TextView tv_Networks;
 	private TextView tv_strength;
+	private TextView tv_encryption;
 	private TextView tv_mac;
 
 	/*
 	 * Im Construktor werden die TextViews für den Namen und Mac Adresse
 	 * übergeben
 	 */
-	public BroadcastReceiverSsid(TextView network, TextView strength, TextView mac) {
+	public BroadcastReceiverSsid(TextView network, TextView strength, TextView mac, TextView encry) {
 		this.tv_Networks = network;
 		this.tv_mac = mac;
 		this.tv_strength = strength;
+		this.tv_encryption = encry;
 	}
 
 	/*
@@ -45,6 +48,11 @@ public class BroadcastReceiverSsid extends BroadcastReceiver {
 		String[] mac = intent.getStringArrayExtra(Ssid.EXTRA_MAC);
 		for (String string : mac) {
 			tv_mac.append("\n" + string);
+		}
+		tv_encryption.setText("");
+		String[] encryption = intent.getStringArrayExtra(Bssid.EXTRA_ENCRYPTION);
+		for (String string : encryption) {
+			tv_encryption.append("\n" + string);
 		}
 
 	}
