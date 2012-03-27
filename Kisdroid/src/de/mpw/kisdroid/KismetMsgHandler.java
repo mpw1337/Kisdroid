@@ -84,16 +84,18 @@ public class KismetMsgHandler {
 
 			ctx.sendBroadcast(intent);
 		}
+
 		if (msg.startsWith(Bssid.IDENTIFIER)){
 			Bssid tbssid = new Bssid(msg);
-			bssid.add(tbssid);
-			Log.d("BSSID",tbssid.toString());
-			Log.d("BSSID",String.valueOf(bssid.size()));
-			
-		}
-		if (msg.startsWith(Bssid.IDENTIFIER)){
-			Bssid tbssid = new Bssid(msg);
-			netzwerke.put(tbssid.getMac(), new Netzwerk(tbssid));
+			if(netzwerke.containsKey(tbssid.getMac())){
+				Netzwerk tn = netzwerke.get(tbssid.getMac());
+				tn.addBssid(tbssid);
+				Log.d("BSSID","Neu: " + tbssid.getMac());
+			}else{
+				netzwerke.put(tbssid.getMac(), new Netzwerk(tbssid));
+				Log.d("BSSID","Vorhanden: " + tbssid.getMac());
+				
+			}
 			Log.d("BSSID",String.valueOf(netzwerke.size()));
 			
 		}

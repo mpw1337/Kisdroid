@@ -7,7 +7,7 @@ import de.mpw.kisdroid.protocols.Bssid;
 import de.mpw.kisdroid.protocols.Ssid;
 
 /**
- * @author Markus Helper 
+ * @author Markus Helper
  * @Klasse um die Netzwerke zu verwalten.
  */
 public class Netzwerk {
@@ -27,6 +27,23 @@ public class Netzwerk {
 	public Netzwerk(Bssid bssid) {
 		this.mBssid = bssid;
 		this.mac = mBssid.getMac();
+	}
+
+	public boolean addSsid(Ssid ssid) {
+		if (mac.equals(ssid.getMac())) {
+			mSsid = ssid;
+			return true;
+		} else {
+			return false;
+		}
+	}
+	public boolean addBssid(Bssid bssid) {
+		if (mac.equals(bssid.getMac())) {
+			mBssid = bssid;
+			return true;
+		} else {
+			return false;
+		}
 	}
 
 }
