@@ -1,9 +1,11 @@
 package de.mpw.kisdroid;
 
 import java.util.HashSet;
+import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Set;
 
+import de.mpw.kisdroid.helper.Netzwerk;
 import de.mpw.kisdroid.protocols.Battery;
 import de.mpw.kisdroid.protocols.Bssid;
 import de.mpw.kisdroid.protocols.GPS;
@@ -24,6 +26,7 @@ public class KismetMsgHandler {
 	private Set<Ssid> ssid = new HashSet<Ssid>();
 	private Set<Info> status = new HashSet<Info>();
 	private Set<Bssid> bssid = new HashSet<Bssid>();
+	private Hashtable<String, Netzwerk> netzwerke = new Hashtable<String, Netzwerk>();
 	private GPS gps;
 	private Battery battery;
 	private TimeP time;
@@ -85,6 +88,13 @@ public class KismetMsgHandler {
 			Bssid tbssid = new Bssid(msg);
 			bssid.add(tbssid);
 			Log.d("BSSID",tbssid.toString());
+			Log.d("BSSID",String.valueOf(bssid.size()));
+			
+		}
+		if (msg.startsWith(Bssid.IDENTIFIER)){
+			Bssid tbssid = new Bssid(msg);
+			netzwerke.put(tbssid.getMac(), new Netzwerk(tbssid));
+			Log.d("BSSID",String.valueOf(netzwerke.size()));
 			
 		}
 		if (msg.startsWith(Info.IDENTIFIER)) {

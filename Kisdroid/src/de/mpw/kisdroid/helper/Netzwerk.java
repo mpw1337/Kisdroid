@@ -7,7 +7,8 @@ import de.mpw.kisdroid.protocols.Bssid;
 import de.mpw.kisdroid.protocols.Ssid;
 
 /**
- * @author Markus Helper Klasse um die Netzwerke zu verwalten.
+ * @author Markus Helper 
+ * @Klasse um die Netzwerke zu verwalten.
  */
 public class Netzwerk {
 
