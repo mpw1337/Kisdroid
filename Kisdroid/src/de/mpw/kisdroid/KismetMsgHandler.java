@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.Set;
 
 import de.mpw.kisdroid.protocols.Battery;
+import de.mpw.kisdroid.protocols.Bssid;
 import de.mpw.kisdroid.protocols.GPS;
 import de.mpw.kisdroid.protocols.Ssid;
 import de.mpw.kisdroid.protocols.Info;
@@ -22,6 +23,7 @@ public class KismetMsgHandler {
 	public static final String ACTION_TIME = "de.mpw.kisdroid.intent.action.TIME"; 
 	private Set<Ssid> ssid = new HashSet<Ssid>();
 	private Set<Info> status = new HashSet<Info>();
+	private Set<Bssid> bssid = new HashSet<Bssid>();
 	private GPS gps;
 	private Battery battery;
 	private TimeP time;
@@ -78,6 +80,12 @@ public class KismetMsgHandler {
 			// intent.putExtra("OBJECT", object);
 
 			ctx.sendBroadcast(intent);
+		}
+		if (msg.startsWith(Bssid.IDENTIFIER)){
+			Bssid tbssid = new Bssid(msg);
+			bssid.add(tbssid);
+			Log.d("BSSID",tbssid.toString());
+			
 		}
 		if (msg.startsWith(Info.IDENTIFIER)) {
 			status.add(new Info(msg));

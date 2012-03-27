@@ -80,6 +80,7 @@ import de.mpw.kisdroid.helper.Ip;
  */
 public class Bssid implements Protocols {
 
+	public static final String IDENTIFIER = "*BSSID";
 	public static final String CAPABILITY = "!%n ENABLE BSSID bssid,type,llcpackets,datapackets,cryptpackets,manuf,channel,"
 			+ "firsttime,lasttime,atype,rangeip,netmaskip,gatewayip,"
 			+ "gpsfixed,minlat,minlon,minalt,minspd,"
@@ -103,6 +104,7 @@ public class Bssid implements Protocols {
 	// + "datasize,turbocellnid,turbocellmode,turbocellsat,carrierset,"
 	// + "maxseenrate,encodingset,decrypted,dupeivpackets,bsstimestamp,"
 	// + "cdpdevice,cdpport,fragments,retries,newpackets,freqmhz,datacryptset";
+
 
 	private GPS mMinGps;
 	private GPS mMaxGps;
