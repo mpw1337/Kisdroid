@@ -3,13 +3,13 @@
  */
 package de.mpw.kisdroid;
 
-import com.google.android.maps.MapView;
-
 import android.os.Bundle;
+
+import com.google.android.maps.MapView;
 
 /**
  * @author Markus
- *
+ * 
  */
 public class MapActivity extends com.google.android.maps.MapActivity {
 
@@ -17,14 +17,19 @@ public class MapActivity extends com.google.android.maps.MapActivity {
 	 * 
 	 */
 	private MapView mv;
+
 	@Override
 	protected void onCreate(Bundle bundle) {
 		// TODO Auto-generated method stub
 		super.onCreate(bundle);
 		setContentView(R.layout.map);
 		mv = (MapView) findViewById(R.id.mv_map);
+		mv.setBuiltInZoomControls(true);
 	}
-	/* (non-Javadoc)
+
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.google.android.maps.MapActivity#isRouteDisplayed()
 	 */
 	@Override
@@ -32,6 +37,5 @@ public class MapActivity extends com.google.android.maps.MapActivity {
 		// TODO Auto-generated method stub
 		return false;
 	}
-
 
 }

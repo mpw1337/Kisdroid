@@ -106,6 +106,9 @@ public class KisdroidActivity extends Activity {
 		case R.id.opt_battery:
 			startActivity(new Intent(this, BatteryActivity.class));
 			break;
+		case R.id.opt_map:
+			startActivity(new Intent(this, MapActivity.class));
+			break;
 		default:
 			break;
 		}

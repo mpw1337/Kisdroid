@@ -22,6 +22,7 @@ public final class R {
         public static final int mv_map=0x7f090009;
         public static final int opt_battery=0x7f09000d;
         public static final int opt_einstellungen=0x7f09000b;
+        public static final int opt_map=0x7f09000e;
         public static final int opt_start_stop=0x7f09000c;
         public static final int pb_battery_status=0x7f090001;
         public static final int pf_Server=0x7f09000a;
@@ -44,10 +45,11 @@ public final class R {
     }
     public static final class string {
         public static final int app_name=0x7f060002;
-        public static final int gps_3df=0x7f06000c;
-        public static final int gps_kf=0x7f06000b;
+        public static final int gps_3df=0x7f06000d;
+        public static final int gps_kf=0x7f06000c;
         public static final int hello=0x7f060001;
         public static final int maps_api=0x7f060000;
+        public static final int opt_map=0x7f06000b;
         public static final int opt_start_stop=0x7f06000a;
         public static final int pf_Server=0x7f060006;
         public static final int pf_einstellungen=0x7f060009;
@@ -56,8 +58,8 @@ public final class R {
         public static final int sf_start=0x7f060003;
         public static final int sf_stop=0x7f060004;
         public static final int toast_fehler=0x7f060005;
-        public static final int tx_bat_Ueberschrift=0x7f06000d;
-        public static final int tx_server_port=0x7f06000e;
+        public static final int tx_bat_Ueberschrift=0x7f06000e;
+        public static final int tx_server_port=0x7f06000f;
     }
     public static final class style {
         public static final int ueberschrift=0x7f070000;

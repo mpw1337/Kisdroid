@@ -9,6 +9,7 @@
         />
     <item android:id="@+id/opt_battery"
         android:title="@string/tx_bat_Ueberschrift"/>
+    <item android:id="@+id/opt_map" android:title="@string/opt_map"></item>
     
 
 </menu>

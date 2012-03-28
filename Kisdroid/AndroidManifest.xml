@@ -6,6 +6,12 @@
 
     <uses-sdk android:minSdkVersion="7" />
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
+    <uses-permission android:name="android.permission.ACCESS_MOCK_LOCATION"/>
+    
+    
 
     <application
         android:icon="@drawable/icon"
@@ -22,6 +28,8 @@
         <service android:name="KismetService"></service>
         <activity android:name="Einstellungen"></activity>
         <activity android:name="BatteryActivity"></activity>
+        <activity android:name="MapActivity"></activity>
+        <uses-library android:name="com.google.android.maps"/>
     </application>
 
 </manifest>
