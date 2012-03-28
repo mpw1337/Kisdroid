@@ -37,8 +37,8 @@ public class KismetMsgHandler {
 
 	public void parse(String msg) {
 		/*
-		 * Wenn die Nachricht vom Typ SSID war wird sie zur Liste der Netzwerke
-		 * hinzugefügt
+		 * Wenn die Nachricht vom Typ BSSID war wird sie zur Liste der Netzwerke
+		 * hinzugefügt und wenn schon vorhanden überschrieben
 		 */
 
 		if (msg.startsWith(Bssid.IDENTIFIER)) {
@@ -53,6 +53,10 @@ public class KismetMsgHandler {
 			Log.d("BSSID", String.valueOf(netzwerke.size()));
 
 		}
+		/*
+		 * Wenn die Nachricht vom Typ SSID war wird sie zur Liste der Netzwerke
+		 * hinzugefügt und wenn schon vorhanden überschrieben.
+		 */
 		if (msg.startsWith(Ssid.getIdentifier())) {
 			Ssid tssid = new Ssid(msg);
 			if (netzwerke.containsKey(tssid.getMac())) {
@@ -65,15 +69,25 @@ public class KismetMsgHandler {
 			Log.d("SSID", String.valueOf(netzwerke.size()));
 
 		}
+		/*
+		 * Wenn die Nachricht vom Typ Info ist, wird sie den Informationen
+		 * hinzugefügt
+		 */
 		if (msg.startsWith(Info.IDENTIFIER)) {
 			status.add(new Info(msg));
 			Log.d("info", msg);
 		}
+		/*
+		 * Wenn die Nachricht vom Typ GPS ist, wird der GPS status aktualisiert
+		 */
 		if (msg.startsWith(GPS.IDENTIFIER)) {
 			gps = new GPS(msg);
 			Log.d("GPS", gps.toString());
 		}
-
+		/*
+		 * Wenn die Nachricht vom Typ Battery ist, wird der Battery Status
+		 * aktualisiert
+		 */
 		if (msg.startsWith(Battery.IDENTIFIER)) {
 			battery = new Battery(msg);
 			Log.d("BATTERY", battery.toString());
@@ -82,6 +96,10 @@ public class KismetMsgHandler {
 			ctx.sendBroadcast(bat_intent);
 
 		}
+		/*
+		 * Wenn die Nachricht vom Typ Time ist, wird die Server Zeit
+		 * aktualisiert
+		 */
 		if (msg.startsWith(TimeP.IDENTIFIER)) {
 			time = new TimeP(msg);
 			Log.d(TimeP.IDENTIFIER, time.getTime());
@@ -89,6 +107,7 @@ public class KismetMsgHandler {
 			time_intent.putExtra(TimeP.EXTRA_TIME, time.getTime());
 			ctx.sendBroadcast(time_intent);
 		}
+		
 		sendNetzwerkBroadcast();
 	}
 
