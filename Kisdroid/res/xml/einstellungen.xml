@@ -5,7 +5,6 @@
         <EditTextPreference
             android:dialogTitle="@string/pf_host"
             android:key="host" 
-            android:id="@+id/pf_Server"
             android:title="@string/pf_host"/>
         <EditTextPreference
             android:dialogTitle="@string/pf_port"
@@ -13,6 +12,13 @@
            	android:key="port" 
            	android:title="@string/pf_port"/>
         
+    </PreferenceCategory>
+    <PreferenceCategory 
+        android:title="@string/pf_gui">
+        <EditTextPreference 
+            android:key="netzwerk_aktualisierungs_rate"
+            android:defaultValue="2000"
+            android:title="@string/pf_aktualisierung_netzwerke"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

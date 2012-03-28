@@ -9,12 +9,12 @@ import android.text.InputType;
 
 public class Einstellungen extends PreferenceActivity implements OnSharedPreferenceChangeListener {
 
-	private static final CharSequence SERVER_KEY = "host";
-	private static final CharSequence SERVER_PORT = "port";
+	public static final String KEY_NETZWERKAKTUALISIERUNGSRATE = "netzwerk_aktualisierungs_rate";
 	public static final String KEY_HOST = "host";
 	public static final String KEY_PORT = "port";
 	EditTextPreference mServer;
 	EditTextPreference mPort;
+	EditTextPreference mNetzwerkAktualisierungsRate;
 	SharedPreferences mPref;
 
 	@Override
@@ -35,9 +35,14 @@ public class Einstellungen extends PreferenceActivity implements OnSharedPrefere
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.einstellungen);
 		mPref = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
-		mServer = (EditTextPreference) getPreferenceScreen().findPreference(SERVER_KEY);
-		mPort = (EditTextPreference) getPreferenceScreen().findPreference(SERVER_PORT);
+		mServer = (EditTextPreference) getPreferenceScreen().findPreference(KEY_HOST);
+		mNetzwerkAktualisierungsRate = (EditTextPreference) getPreferenceScreen().findPreference(
+				KEY_NETZWERKAKTUALISIERUNGSRATE);
+		mPort = (EditTextPreference) getPreferenceScreen().findPreference(KEY_PORT);
 		mPort.getEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
+		mNetzwerkAktualisierungsRate.getEditText().setInputType(InputType.TYPE_CLASS_NUMBER);
+		mNetzwerkAktualisierungsRate.setSummary(mPref.getString(KEY_NETZWERKAKTUALISIERUNGSRATE,
+				"2000"));
 		mPort.setSummary(mPref.getString(KEY_PORT, "2501"));
 		mServer.setSummary(mPref.getString(KEY_HOST, "127.0.0.1"));
 
@@ -49,6 +54,10 @@ public class Einstellungen extends PreferenceActivity implements OnSharedPrefere
 		}
 		if (key.equals(KEY_HOST)) {
 			mServer.setSummary(mPref.getString(KEY_HOST, "127.0.0.1"));
+		}
+		if (key.equals(KEY_NETZWERKAKTUALISIERUNGSRATE)) {
+			mNetzwerkAktualisierungsRate.setSummary(mPref.getString(
+					KEY_NETZWERKAKTUALISIERUNGSRATE, "2000"));
 		}
 
 	}

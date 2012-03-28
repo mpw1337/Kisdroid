@@ -10,6 +10,8 @@
     <string name="pf_host">Host:</string>
     <string name="pf_port">Port:</string>
     <string name="pf_einstellungen">Einstellungen</string>
+    <string name="pf_gui">Oberfläche</string>
+    <string name="pf_aktualisierung_netzwerke">Netzwerk Aktualisierung</string>
     <string name="opt_start_stop">Starten/Stoppen</string>
     <string name="opt_map">Karte</string>
     <string name="gps_kf">Kein Fix</string>

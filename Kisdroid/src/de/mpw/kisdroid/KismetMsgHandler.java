@@ -6,18 +6,20 @@ import java.util.Hashtable;
 import java.util.Iterator;
 import java.util.Set;
 import java.util.Timer;
+import java.util.TimerTask;
 
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
+import android.preference.EditTextPreference;
+import android.util.Log;
 import de.mpw.kisdroid.helper.Netzwerk;
 import de.mpw.kisdroid.protocols.Battery;
 import de.mpw.kisdroid.protocols.Bssid;
 import de.mpw.kisdroid.protocols.GPS;
-import de.mpw.kisdroid.protocols.Ssid;
 import de.mpw.kisdroid.protocols.Info;
+import de.mpw.kisdroid.protocols.Ssid;
 import de.mpw.kisdroid.protocols.TimeP;
-
-import android.content.Context;
-import android.content.Intent;
-import android.util.Log;
 
 public class KismetMsgHandler {
 	private Context ctx;
@@ -25,14 +27,39 @@ public class KismetMsgHandler {
 	public static final String ACTION_BSSID = "de.mpw.kisdroid.intent.action.BSSID";
 	public static final String ACTION_BATTERY = "de.mpw.kisdroid.intent.action.BATTERY";
 	public static final String ACTION_TIME = "de.mpw.kisdroid.intent.action.TIME";
+
 	private Set<Info> status = new HashSet<Info>();
 	private Hashtable<String, Netzwerk> netzwerke = new Hashtable<String, Netzwerk>();
 	private GPS gps;
 	private Battery battery;
 	private TimeP time;
+	private long mPeriod = 4000L;
+	private Timer mTimer;
+	private TimerTask mTimerTask = new TimerTask() {
+
+		@Override
+		public void run() {
+			sendNetzwerkBroadcast();
+		}
+
+	};
+	private SharedPreferences mPref;
 
 	public KismetMsgHandler(Context context) {
 		this.ctx = context;
+		mPref = ctx.getSharedPreferences(ctx.getPackageName() + "_preferences", Context.MODE_PRIVATE);
+		mPeriod = Integer.decode(mPref.getString(Einstellungen.KEY_NETZWERKAKTUALISIERUNGSRATE,
+				"2000"));
+		mTimer = new Timer();
+		mTimer.scheduleAtFixedRate(mTimerTask, 0, mPeriod);
+	}
+
+	public void  onDestroy() {
+		mTimer.cancel();
+	}
+	@Override
+	protected void finalize() throws Throwable {
+		super.finalize();
 	}
 
 	public void parse(String msg) {
@@ -107,8 +134,7 @@ public class KismetMsgHandler {
 			time_intent.putExtra(TimeP.EXTRA_TIME, time.getTime());
 			ctx.sendBroadcast(time_intent);
 		}
-		
-		sendNetzwerkBroadcast();
+
 	}
 
 	private void sendNetzwerkBroadcast() {
