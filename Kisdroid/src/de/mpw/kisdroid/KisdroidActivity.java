@@ -3,8 +3,6 @@ package de.mpw.kisdroid;
 import android.app.Activity;
 import android.app.ActivityManager;
 import android.app.ActivityManager.RunningServiceInfo;
-import android.content.BroadcastReceiver;
-import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -14,7 +12,6 @@ import android.view.MenuItem;
 import android.widget.TextView;
 import de.mpw.kisdroid.BroadcastReceiver.BroadcastReceiverSsid;
 import de.mpw.kisdroid.BroadcastReceiver.BroadcastReceiverTime;
-import de.mpw.kisdroid.protocols.Ssid;
 
 public class KisdroidActivity extends Activity {
 

@@ -25,9 +25,7 @@ public class KismetMsgHandler {
 	public static final String ACTION_BSSID = "de.mpw.kisdroid.intent.action.BSSID";
 	public static final String ACTION_BATTERY = "de.mpw.kisdroid.intent.action.BATTERY";
 	public static final String ACTION_TIME = "de.mpw.kisdroid.intent.action.TIME";
-	private Set<Ssid> ssid = new HashSet<Ssid>();
 	private Set<Info> status = new HashSet<Info>();
-	private Set<Bssid> bssid = new HashSet<Bssid>();
 	private Hashtable<String, Netzwerk> netzwerke = new Hashtable<String, Netzwerk>();
 	private GPS gps;
 	private Battery battery;
@@ -42,52 +40,6 @@ public class KismetMsgHandler {
 		 * Wenn die Nachricht vom Typ SSID war wird sie zur Liste der Netzwerke
 		 * hinzugefügt
 		 */
-		// if (msg.startsWith(Ssid.getIdentifier())) {
-		// // Temporäres Ssid Object erzeugen
-		// Ssid tssid = new Ssid(msg);
-		// // doppelt auf false initialisieren
-		// boolean doppelt = false;
-		// // Durch alle schon im Array befindlichen Netzwerke gehen und
-		// // vergleichen
-		// for (Iterator<Ssid> iterator = ssid.iterator(); iterator.hasNext();)
-		// {
-		// Ssid type = (Ssid) iterator.next();
-		// // Falls die Mac Adresse, oder die SSID gleich sind als doppelt
-		// // markieren
-		// if ((type.getMac().equals(tssid.getMac()))) {
-		// doppelt = true;
-		// // Log.d("KISDROID_DOPPELTE", type.getMac() + tssid.getMac()
-		// // + " SSID: " + type.getSsid() + " und " +
-		// // tssid.getSsid());
-		// break;
-		// }
-		//
-		// }
-		// if (!doppelt) {
-		// ssid.add(tssid);
-		// }
-		// // Intent vorbereiten um die Netzwerke zu übermitteln
-		// Intent intent = new Intent(ACTION_SSID);
-		// String[] temp = new String[ssid.size()];
-		// String[] strength = new String[ssid.size()];
-		// String[] mac = new String[ssid.size()];
-		//
-		// int i = 0;
-		// for (Iterator<Ssid> iterator = ssid.iterator(); iterator.hasNext();)
-		// {
-		// Ssid type = (Ssid) iterator.next();
-		// temp[i] = type.getSsid();
-		// strength[i] = type.getMaxRate();
-		// mac[i] = type.getMac();
-		// i++;
-		// }
-		// intent.putExtra(Ssid.EXTRA, temp);
-		// intent.putExtra(Ssid.EXTRA_MAXSTRENGTH, strength);
-		// intent.putExtra(Ssid.EXTRA_MAC, mac);
-		// // intent.putExtra("OBJECT", object);
-		//
-		// ctx.sendBroadcast(intent);
-		// }
 
 		if (msg.startsWith(Bssid.IDENTIFIER)) {
 			Bssid tbssid = new Bssid(msg);
@@ -138,10 +90,6 @@ public class KismetMsgHandler {
 			ctx.sendBroadcast(time_intent);
 		}
 		sendNetzwerkBroadcast();
-	}
-
-	public Set<Ssid> getssid() {
-		return ssid;
 	}
 
 	private void sendNetzwerkBroadcast() {

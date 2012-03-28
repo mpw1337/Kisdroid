@@ -160,7 +160,7 @@ public class Bssid implements Protocols {
 			if (string.equals("2")) {
 				this.encryption = "WPA";
 			} else {
-				this.encryption = "none/WEP";
+				this.encryption = string;
 			}
 		}
 	}
