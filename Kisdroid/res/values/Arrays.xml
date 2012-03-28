@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="network_type">
+        <item >Infrastruktur</item>
+        <item >Ad-Hoc</item>
+        <item >Probe</item>
+        <item >Turbocell</item>
+        <item >Data</item>
+    </string-array>
+    
+</resources>

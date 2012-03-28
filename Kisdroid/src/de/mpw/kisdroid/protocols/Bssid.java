@@ -85,6 +85,10 @@ public class Bssid implements Protocols {
 
 	public static final String IDENTIFIER = "*BSSID";
 	public static final String EXTRA_ENCRYPTION = "EXTRA_ENCRYPION";
+	public static final String[] TYPE = new String[]{
+	"Infrastructure","Ad-hoc","probe","Turbocell","Data"};
+		
+
 	public static final String CAPABILITY = "!%n ENABLE BSSID bssid,type,llcpackets,datapackets,cryptpackets,manuf,channel,"
 			+ "firsttime,lasttime,atype,rangeip,netmaskip,gatewayip,"
 			+ "gpsfixed,minlat,minlon,minalt,minspd,"
@@ -119,6 +123,7 @@ public class Bssid implements Protocols {
 	private String mMac;
 	private String encryption;
 	private Integer type;
+	private String ptype;
 	private Integer llcpackets;
 	private Integer datapackets;
 	private Integer cryptpackets;
@@ -143,6 +148,7 @@ public class Bssid implements Protocols {
 		mArray = temp[1].split(" ");
 		this.mMac = mArray[0];
 		this.type = Integer.parseInt(mArray[1]);
+		this.ptype = TYPE[type];
 		this.manufactor = mArray[5];
 		this.channel = Integer.decode(mArray[6]);
 		this.rangeip = new Ip(mArray[10]);
@@ -209,7 +215,7 @@ public class Bssid implements Protocols {
 	}
 
 	public String toString() {
-		return "Mac: " + mMac + " Typ: " + type + "Channel: " + channel + "Min GPS:"
+		return "Mac: " + mMac + " Typ: " + ptype + "Channel: " + channel + "Min GPS:"
 				+ mMinGps.toString() + "RangeIP: " + rangeip.toString() + " Netmask: "
 				+ netmaskip.toString() + "Gateway IP: " + gatewayip.toString();
 	}
