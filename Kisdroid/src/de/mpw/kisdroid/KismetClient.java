@@ -76,7 +76,6 @@ public class KismetClient extends Thread {
 	public void destroy() {
 		// TODO Auto-generated method stub
 		kmh.onDestroy();
-		super.destroy();
 	}
 
 	// Klient starten

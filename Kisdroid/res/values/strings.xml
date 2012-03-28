@@ -18,5 +18,8 @@
     <string name="gps_3df">3D Fix</string>
     <string name="tx_bat_Ueberschrift">Battery</string>
     <string name="tx_server_port">Server: SERVER:PORT</string>
+    <string name="tx_name">SSID</string>
+    <string name="tx_mac">Mac</string>
+    <string name="tx_encryption">encr</string>
 
 </resources>

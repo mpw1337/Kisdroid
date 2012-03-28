@@ -60,6 +60,7 @@ public class KismetService extends Service {
 		}
 		// Client stopen
 		client.stopClient();
+		client.destroy();
 		// Notification löschen
 		nManager.cancel(ID_RUNNING);
 		super.onDestroy();

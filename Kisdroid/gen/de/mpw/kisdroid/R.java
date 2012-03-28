@@ -60,6 +60,9 @@ public final class R {
         public static final int sf_stop=0x7f060004;
         public static final int toast_fehler=0x7f060005;
         public static final int tx_bat_Ueberschrift=0x7f060010;
+        public static final int tx_encryption=0x7f060014;
+        public static final int tx_mac=0x7f060013;
+        public static final int tx_name=0x7f060012;
         public static final int tx_server_port=0x7f060011;
     }
     public static final class style {
