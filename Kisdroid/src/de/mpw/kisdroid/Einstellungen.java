@@ -12,6 +12,11 @@ public class Einstellungen extends PreferenceActivity implements OnSharedPrefere
 	public static final String KEY_NETZWERKAKTUALISIERUNGSRATE = "netzwerk_aktualisierungs_rate";
 	public static final String KEY_HOST = "host";
 	public static final String KEY_PORT = "port";
+	public static final String KEY_SSID ="SSID";
+	public static final String KEY_MAC = "mac";
+	public static final String KEY_ENCRYPTION = "encryption";
+	public static final String KEY_STRENGTH = "strength";
+	
 	EditTextPreference mServer;
 	EditTextPreference mPort;
 	EditTextPreference mNetzwerkAktualisierungsRate;

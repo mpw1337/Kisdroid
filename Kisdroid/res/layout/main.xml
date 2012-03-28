@@ -33,7 +33,7 @@
 		        android:id="@+id/tv_Networks"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:text="@string/tx_name" />
+		        android:text="@string/tx_ssid" />
 		    <TextView
 		        android:id="@+id/tv_mac"
 		        android:layout_width="wrap_content"

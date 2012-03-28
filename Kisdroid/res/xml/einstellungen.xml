@@ -19,6 +19,22 @@
             android:key="netzwerk_aktualisierungs_rate"
             android:defaultValue="2000"
             android:title="@string/pf_aktualisierung_netzwerke"/>
+        <CheckBoxPreference 
+            android:enabled="true"
+            android:key="SSID"
+            android:title="@string/tx_ssid"/>
+        <CheckBoxPreference 
+            android:enabled="true"
+            android:key="mac"
+            android:title="@string/tx_mac"/>
+        <CheckBoxPreference 
+            android:enabled="true"
+            android:key="encryption"
+            android:title="@string/pf_encryption"/>
+        <CheckBoxPreference 
+            android:enabled="true"
+            android:key="strength"
+            android:title="@string/pf_strength"/>
     </PreferenceCategory>
 
 </PreferenceScreen>

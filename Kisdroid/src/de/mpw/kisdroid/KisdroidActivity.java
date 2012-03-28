@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.TextView;
 import de.mpw.kisdroid.BroadcastReceiver.BroadcastReceiverSsid;
 import de.mpw.kisdroid.BroadcastReceiver.BroadcastReceiverTime;
@@ -45,7 +46,8 @@ public class KisdroidActivity extends Activity {
 		mPref = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
 		// Broadcast Receiver für Time initialisieren
 		mBroadcastReceiverTime = new BroadcastReceiverTime(tv_time);
-		mBroadcastReceiverSsid = new BroadcastReceiverSsid(tv_Networks, tv_strength, tv_mac,tv_encryption);
+		mBroadcastReceiverSsid = new BroadcastReceiverSsid(tv_Networks, tv_strength, tv_mac,
+				tv_encryption);
 	}
 
 	@Override
@@ -64,6 +66,24 @@ public class KisdroidActivity extends Activity {
 				mPref.getString(Einstellungen.KEY_HOST, "127.0.0.1")).replace("PORT",
 				mPref.getString(Einstellungen.KEY_PORT, "2501"));
 		tv_server_port.setText(tx_server_port);
+		if (mPref.getBoolean(Einstellungen.KEY_SSID, true)) {
+			tv_Networks.setVisibility(View.VISIBLE);
+		} else {
+			tv_Networks.setVisibility(View.GONE);
+			// tv_Networks.setWidth(0);
+		}
+
+		if (mPref.getBoolean(Einstellungen.KEY_MAC, true)) {
+			tv_mac.setVisibility(View.VISIBLE);
+		} else {
+			tv_mac.setVisibility(View.GONE);
+		}
+
+		if (mPref.getBoolean(Einstellungen.KEY_STRENGTH, true)) {
+			tv_strength.setVisibility(View.VISIBLE);
+		} else {
+			tv_strength.setVisibility(View.GONE);
+		}
 	}
 
 	@Override
