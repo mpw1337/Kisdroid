@@ -126,7 +126,7 @@ public class KismetMsgHandler {
 			if ((netzwerk.getSsid() != null) && (netzwerk.getBssid() != null)) {
 				temp[i] = netzwerk.getSsid().getSsid();
 				mac[i] = netzwerk.mac;
-				strength[i] = netzwerk.getBssid().getSignalDbm();
+				strength[i] = netzwerk.getBssid().getSignalDbm().getSignal();
 				encryption[i] = netzwerk.getBssid().getEncryption();
 			}
 			i++;

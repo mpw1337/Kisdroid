@@ -1,5 +1,7 @@
 package de.mpw.kisdroid.protocols;
 
+import java.security.spec.MGF1ParameterSpec;
+
 import de.mpw.kisdroid.helper.Ip;
 import de.mpw.kisdroid.helper.Signal;
 
@@ -111,6 +113,8 @@ public class Bssid implements Protocols {
 	private GPS mMaxGps;
 	private GPS mBestGps;
 	private Signal mSignalDbm;
+	private Signal mMinSignalDbm;
+	private Signal mMaxSignalDbm;
 	private String raw;
 	private String mMac;
 	private String encryption;
@@ -149,6 +153,9 @@ public class Bssid implements Protocols {
 		this.mMaxGps = new GPS(mArray[18], mArray[19], mArray[20], mArray[21], mArray[13]);
 		this.mBestGps = new GPS(mArray[34], mArray[35], mArray[36]);
 		this.mSignalDbm = new Signal(mArray[22], mArray[23]);
+		this.mMinSignalDbm = new Signal(mArray[24], mArray[25]);
+		this.mMaxSignalDbm = new Signal(mArray[26], mArray[27]);
+
 		setEncodingset(mArray[43]);
 
 	}
@@ -177,8 +184,24 @@ public class Bssid implements Protocols {
 		return manufactor;
 	}
 
-	public String getSignalDbm() {
-		return mSignalDbm.getSignal();
+	public Signal getSignalDbm() {
+		return mSignalDbm;
+	}
+
+	public Signal getMinSignalDbm() {
+		return mMinSignalDbm;
+	}
+
+	public Signal getMaxSignalDbm() {
+		return mMaxSignalDbm;
+	}
+
+	public GPS getBestGps() {
+		return mBestGps;
+	}
+
+	public Integer getGPSfixed() {
+		return gpsfixed;
 	}
 
 	public String getEncryption() {
