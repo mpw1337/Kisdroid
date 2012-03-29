@@ -11,7 +11,6 @@ import java.util.TimerTask;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.preference.EditTextPreference;
 import android.util.Log;
 import de.mpw.kisdroid.helper.Netzwerk;
 import de.mpw.kisdroid.protocols.Battery;
@@ -23,6 +22,7 @@ import de.mpw.kisdroid.protocols.TimeP;
 
 public class KismetMsgHandler {
 	private Context ctx;
+	public static final String ACTION_GPS = "de.mpw.kisdroid.intent.action.GPS";
 	public static final String ACTION_SSID = "de.mpw.kisdroid.intent.action.SSID";
 	public static final String ACTION_BSSID = "de.mpw.kisdroid.intent.action.BSSID";
 	public static final String ACTION_BATTERY = "de.mpw.kisdroid.intent.action.BATTERY";
@@ -109,6 +109,10 @@ public class KismetMsgHandler {
 		 */
 		if (msg.startsWith(GPS.IDENTIFIER)) {
 			gps = new GPS(msg);
+			Intent gps_intent = new Intent(ACTION_GPS);
+			gps_intent.putExtra(GPS.EXTRA_LAT, gps.getLat());
+			gps_intent.putExtra(GPS.EXTRA_LON, gps.getLon());
+			ctx.sendBroadcast(gps_intent);
 			Log.d("GPS", gps.toString());
 		}
 		/*

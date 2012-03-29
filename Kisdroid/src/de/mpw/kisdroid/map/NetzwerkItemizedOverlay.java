@@ -13,24 +13,27 @@ import com.google.android.maps.OverlayItem;
 /**
  * @author Markus
  * 
- * {@link http://de.wikibooks.org/wiki/Googles_Android/_MapActivity}
+ *         {@link http://de.wikibooks.org/wiki/Googles_Android/_MapActivity}
  */
 public class NetzwerkItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 
 	private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
+
 	/**
 	 * @param drawable
 	 */
 	public NetzwerkItemizedOverlay(Drawable drawable) {
 		super(boundCenterBottom(drawable));
 	}
-	
-	public void addOverlay(OverlayItem overlay){
+
+	public void addOverlay(OverlayItem overlay) {
 		mOverlays.add(overlay);
 		populate();
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.google.android.maps.ItemizedOverlay#createItem(int)
 	 */
 	@Override
@@ -38,7 +41,9 @@ public class NetzwerkItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 		return mOverlays.get(i);
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see com.google.android.maps.ItemizedOverlay#size()
 	 */
 	@Override

@@ -40,3 +40,10 @@ public class Battery implements Protocols {
 	}
 
 }
+
+//03-29 15:41:46.959: D/BATTERY(30942): Percentage: 97% Charging:2AC:1 Verbleibend:0
+//03-29 15:42:20.444: D/BATTERY(30942): Percentage: 97% Charging:0AC:0 Verbleibend:0
+//03-29 15:42:33.169: D/BATTERY(30942): Percentage: 97% Charging:0AC:0 Verbleibend:13662
+
+
+

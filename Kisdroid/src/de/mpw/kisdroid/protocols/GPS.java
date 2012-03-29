@@ -1,6 +1,5 @@
 package de.mpw.kisdroid.protocols;
 
-
 public class GPS implements Protocols {
 	public static final String IDENTIFIER = "*GPS";
 	public static String EXTRA = "GPS";
@@ -14,7 +13,7 @@ public class GPS implements Protocols {
 	private String lon; // Longitude Bsp 8.203
 	private String altitude; // Hoehe mit . Bsp: 145.4
 	private String spd; // Speed
-//	private String heading; // Ausrichtung in Grad
+	// private String heading; // Ausrichtung in Grad
 	private String fix; // 0 = kein Fix 3 = 3D Fix -1 = NO FIX
 	// private String satinfo;
 	private String hdop; // Horizontale genauigkeit
@@ -37,14 +36,13 @@ public class GPS implements Protocols {
 		this.hdop = mArray[6];
 		this.vdop = mArray[7];
 	}
-	
-	public GPS(String Llat, String Llon, String Laltitude,String Lspeed,String lfix){
+
+	public GPS(String Llat, String Llon, String Laltitude, String Lspeed, String lfix) {
 		this.lat = Llat;
 		this.lon = Llon;
 		this.altitude = Laltitude;
 		this.spd = Lspeed;
 	}
-	
 
 	public GPS(String Llat, String Llon, String Laltitude) {
 		this.lat = Llat;
@@ -62,6 +60,14 @@ public class GPS implements Protocols {
 		// Integer.parseInt(lon));
 		// return gp;
 		return "Lat:" + lat + "Lon" + lon;
+	}
+
+	public String getLat() {
+		return lat;
+	}
+
+	public String getLon() {
+		return lon;
 	}
 
 	public String getFix() {
