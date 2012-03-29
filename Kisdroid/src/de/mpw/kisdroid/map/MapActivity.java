@@ -1,11 +1,15 @@
 /**
  * 
  */
-package de.mpw.kisdroid;
+package de.mpw.kisdroid.map;
 
 import android.os.Bundle;
 
 import com.google.android.maps.MapView;
+
+import de.mpw.kisdroid.R;
+import de.mpw.kisdroid.R.id;
+import de.mpw.kisdroid.R.layout;
 
 /**
  * @author Markus

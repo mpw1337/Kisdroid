@@ -13,6 +13,7 @@ import android.view.View;
 import android.widget.TextView;
 import de.mpw.kisdroid.BroadcastReceiver.BroadcastReceiverSsid;
 import de.mpw.kisdroid.BroadcastReceiver.BroadcastReceiverTime;
+import de.mpw.kisdroid.map.MapActivity;
 
 public class KisdroidActivity extends Activity {
 
