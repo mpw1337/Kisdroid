@@ -49,15 +49,20 @@ public class BroadcastReceiverGPS extends BroadcastReceiver {
 			tv_lat.setText(lat);
 			tv_lon.setText(lon);
 		}
-		if (mv != null) {
-			mapOverlays.clear();
+		if ((mv != null) && (lat != null) && (lon != null)) {
+			if (mapOverlays.size() > 1) {
+				mapOverlays.remove(1);
+			}
 			itemizedOverlay = new NetzwerkItemizedOverlay(drawable);
-			GeoPoint point = new GeoPoint((int) (Float.parseFloat(lat)*1E6), (int) (Float.parseFloat(lon)*1E6));
+			GeoPoint point = new GeoPoint((int) (Float.parseFloat(lat) * 1E6),
+					(int) (Float.parseFloat(lon) * 1E6));
 			OverlayItem overlayitem = new OverlayItem(point, "Titel", "Snippet");
 			itemizedOverlay.addOverlay(overlayitem);
-			mapOverlays.add(0, itemizedOverlay);
+			if (mapOverlays.size() == 0) {
+				mapOverlays.add(itemizedOverlay);
+			} else {
+				mapOverlays.add(1, itemizedOverlay);
+			}
 		}
-
 	}
-
 }

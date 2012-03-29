@@ -205,6 +205,9 @@ public class Bssid implements Protocols {
 	public GPS getBestGps() {
 		return mBestGps;
 	}
+	public GPS getMaxGps() {
+		return mMaxGps;
+	}
 
 	public Integer getGPSfixed() {
 		return gpsfixed;

@@ -20,6 +20,7 @@ import de.mpw.kisdroid.R;
 import de.mpw.kisdroid.R.id;
 import de.mpw.kisdroid.R.layout;
 import de.mpw.kisdroid.BroadcastReceiver.BroadcastReceiverGPS;
+import de.mpw.kisdroid.BroadcastReceiver.BroadcastReceiverGPSNetzwerke;
 
 /**
  * @author Markus
@@ -36,7 +37,9 @@ public class MapActivity extends com.google.android.maps.MapActivity {
 	private Drawable drawable; // das ''Drawable'' für unseren Marker
 	private NetzwerkItemizedOverlay itemizedOverlay; // unser Overlay
 	private BroadcastReceiverGPS mBroadcastReceiverGps;
+	private BroadcastReceiverGPSNetzwerke mBroadcastReceiverGPSNetzwerke;
 	final IntentFilter filter = new IntentFilter(KismetMsgHandler.ACTION_GPS);
+	final IntentFilter filter2 = new IntentFilter(KismetMsgHandler.ACTION_GPS_NETWORK);
 
 	@Override
 	protected void onCreate(Bundle bundle) {
@@ -49,27 +52,30 @@ public class MapActivity extends com.google.android.maps.MapActivity {
 										// auf die Karte anwenden
 										// können,
 		mBroadcastReceiverGps = new BroadcastReceiverGPS(mv, getApplicationContext());
-		drawable = this.getResources().getDrawable(android.R.drawable.star_on);
-		itemizedOverlay = new NetzwerkItemizedOverlay(drawable);
-		GeoPoint point = new GeoPoint(52457270, 13526380);
-		GeoPoint point1 = new GeoPoint(52457275, 13526300);
-		OverlayItem overlayitem2 = new OverlayItem(point1, "", "");
-		OverlayItem overlayitem = new OverlayItem(point, "Titel", "Snippet");
-		itemizedOverlay.addOverlay(overlayitem);
-		itemizedOverlay.addOverlay(overlayitem2);
-		mapOverlays.add(0,itemizedOverlay);
+		mBroadcastReceiverGPSNetzwerke = new BroadcastReceiverGPSNetzwerke(mv, getApplicationContext());
+//		drawable = this.getResources().getDrawable(android.R.drawable.star_on);
+//		itemizedOverlay = new NetzwerkItemizedOverlay(drawable);
+//		GeoPoint point = new GeoPoint(52457270, 13526380);
+//		GeoPoint point1 = new GeoPoint(52457275, 13526300);
+//		OverlayItem overlayitem2 = new OverlayItem(point1, "", "");
+//		OverlayItem overlayitem = new OverlayItem(point, "Titel", "Snippet");
+//		itemizedOverlay.addOverlay(overlayitem);
+//		itemizedOverlay.addOverlay(overlayitem2);
+//		mapOverlays.add(0,itemizedOverlay);
 		LocationManager mLm = (LocationManager) getSystemService(LOCATION_SERVICE);
 	}
 
 	@Override
 	protected void onPause() {
 		getApplicationContext().unregisterReceiver(mBroadcastReceiverGps);
+		getApplicationContext().unregisterReceiver(mBroadcastReceiverGPSNetzwerke);
 		super.onPause();
 	}
 
 	@Override
 	protected void onResume() {
 		getApplicationContext().registerReceiver(mBroadcastReceiverGps, filter);
+		getApplicationContext().registerReceiver(mBroadcastReceiverGPSNetzwerke, filter2);
 		super.onResume();
 	}
 

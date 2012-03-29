@@ -5,6 +5,9 @@ public class GPS implements Protocols {
 	public static String EXTRA = "GPS";
 	public static String EXTRA_LAT = "GPS_LAT";
 	public static String EXTRA_LON = "GPS_LON";
+	public static String EXTRA_LAT_ARRAY = "GPS_LAT_ARRAY";
+	public static String EXTRA_LON_ARRAY = "GPS_LON_ARRAY";
+	
 	public static String CAPABILITY = "!%n ENABLE GPS lat,lon,alt,spd,fix,connected,hdop,vdop";
 	// GPS lat,lon,alt,spd,heading,fix,satinfo,hdop,vdop,connected
 	private String raw;

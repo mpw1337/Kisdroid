@@ -23,6 +23,7 @@ import de.mpw.kisdroid.protocols.TimeP;
 public class KismetMsgHandler {
 	private Context ctx;
 	public static final String ACTION_GPS = "de.mpw.kisdroid.intent.action.GPS";
+	public static final String ACTION_GPS_NETWORK = "de.mpw.kisdroid.intent.action.GPS_NETWORK";
 	public static final String ACTION_SSID = "de.mpw.kisdroid.intent.action.SSID";
 	public static final String ACTION_BSSID = "de.mpw.kisdroid.intent.action.BSSID";
 	public static final String ACTION_BATTERY = "de.mpw.kisdroid.intent.action.BATTERY";
@@ -47,16 +48,18 @@ public class KismetMsgHandler {
 
 	public KismetMsgHandler(Context context) {
 		this.ctx = context;
-		mPref = ctx.getSharedPreferences(ctx.getPackageName() + "_preferences", Context.MODE_PRIVATE);
+		mPref = ctx.getSharedPreferences(ctx.getPackageName() + "_preferences",
+				Context.MODE_PRIVATE);
 		mPeriod = Integer.decode(mPref.getString(Einstellungen.KEY_NETZWERKAKTUALISIERUNGSRATE,
 				"2000"));
 		mTimer = new Timer();
 		mTimer.scheduleAtFixedRate(mTimerTask, 0, mPeriod);
 	}
 
-	public void  onDestroy() {
+	public void onDestroy() {
 		mTimer.cancel();
 	}
+
 	@Override
 	protected void finalize() throws Throwable {
 		super.finalize();
@@ -144,6 +147,9 @@ public class KismetMsgHandler {
 	private void sendNetzwerkBroadcast() {
 
 		Intent intent = new Intent(ACTION_SSID);
+		Intent intentgps = new Intent(ACTION_GPS_NETWORK);
+		String[] lat = new String[netzwerke.size()];
+		String[] lon = new String[netzwerke.size()];
 		String[] temp = new String[netzwerke.size()];
 		String[] strength = new String[netzwerke.size()];
 		String[] mac = new String[netzwerke.size()];
@@ -156,18 +162,22 @@ public class KismetMsgHandler {
 			if ((netzwerk.getSsid() != null) && (netzwerk.getBssid() != null)) {
 				temp[i] = netzwerk.getSsid().getSsid();
 				mac[i] = netzwerk.mac;
+				lat[i] = netzwerk.getBssid().getBestGps().getLat();
+				lon[i] = netzwerk.getBssid().getBestGps().getLon();
 				strength[i] = netzwerk.getBssid().getSignalDbm().getSignal();
 				encryption[i] = netzwerk.getBssid().getEncryption();
 			}
 			i++;
 
 		}
+		intentgps.putExtra(GPS.EXTRA_LAT_ARRAY, lat);
+		intentgps.putExtra(GPS.EXTRA_LON_ARRAY, lon);
 		intent.putExtra(Ssid.EXTRA, temp);
 		intent.putExtra(Ssid.EXTRA_MAXSTRENGTH, strength);
 		intent.putExtra(Ssid.EXTRA_MAC, mac);
 		intent.putExtra(Bssid.EXTRA_ENCRYPTION, encryption);
 		// intent.putExtra("OBJECT", object);
-
+		ctx.sendBroadcast(intentgps);
 		ctx.sendBroadcast(intent);
 
 	}
