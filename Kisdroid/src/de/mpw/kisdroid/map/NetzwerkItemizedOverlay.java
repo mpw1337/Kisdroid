@@ -30,6 +30,11 @@ public class NetzwerkItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 		mOverlays.add(overlay);
 		populate();
 	}
+	public void addOverlay(OverlayItem overlay,Drawable drawable){
+		overlay.setMarker(drawable);
+		mOverlays.add(overlay);
+		populate();
+	}
 
 	/*
 	 * (non-Javadoc)
