@@ -15,13 +15,16 @@ public class KismetService extends Service {
 
 	private KismetBinder mBinder;
 	private String TAG = "KISMET Service";
-	private KismetClient client;
-	private String SERVER = "127.0.0.1";
-	private int PORT = 2501;
+	private KismetClient client; // Der eigentliche Client
+	private String SERVER = "127.0.0.1"; // Standard Adresse
+	private int PORT = 2501; // Standard Port
 
-	private NotificationManager nManager;
-	private String NTitel = "Kisdroid Service";
-	private String NDetail = "Kisdroid Service läuft";
+	private NotificationManager nManager; // Notification Manager für
+											// Nachrichten.
+	private String NTitel = getApplicationContext().getResources().getString(
+			R.string.nf_titel_start);
+	private String NDetail = getApplicationContext().getResources().getString(
+			R.string.nf_detail_start);
 	int icon = R.drawable.icon;
 	private Notification nBenachrichtigung;
 
@@ -44,8 +47,11 @@ public class KismetService extends Service {
 			Log.d(TAG, "OnCreate() aufgerufgen");
 		}
 		// Neues Kismet Client Objekt erstellen
+		// Shared Preferences holen
 		mPref = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
+		// Server aus Einstellungen lesen
 		SERVER = mPref.getString(Einstellungen.KEY_HOST, "127.0.0.1");
+		// Port aus Einstellungen lesen
 		PORT = Integer.parseInt(mPref.getString(Einstellungen.KEY_PORT, "2501"));
 		client = new KismetClient(SERVER, PORT, this.getApplicationContext());
 

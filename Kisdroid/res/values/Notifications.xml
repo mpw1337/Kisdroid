@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="nf_titel_start">Kisdroid Service</string>
+    <string name="nf_detail_start">Kisdroid Service läuft.</string>
+    
+</resources>
