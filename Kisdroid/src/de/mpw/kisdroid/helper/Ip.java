@@ -11,6 +11,9 @@ public class Ip {
 
 	/**
 	 * Dem Construktor wird ein String der Form "144.123.0.3" übergeben.
+	 * 
+	 * @param adresse
+	 *            Adresse, der Form "xxx.xxx.xxx.xxx"
 	 */
 	public Ip(String adresse) {
 		String[] mTemp;
@@ -26,6 +29,9 @@ public class Ip {
 		}
 	}
 
+	/**
+	 * Liefert die IP Adresse als Integer Array.
+	 */
 	public Integer[] getIP() {
 		return mAdresse;
 	}
