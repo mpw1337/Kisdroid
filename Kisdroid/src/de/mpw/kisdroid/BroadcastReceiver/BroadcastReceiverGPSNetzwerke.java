@@ -1,6 +1,3 @@
-/**
- * 
- */
 package de.mpw.kisdroid.BroadcastReceiver;
 
 import java.util.List;
@@ -20,7 +17,8 @@ import android.os.Bundle;
 
 /**
  * @author Markus
- * 
+ * @Description Spezieller BroadcastReceiver für GPSNetzwerke.
+ * @intent de.mpw.kisdroid.intent.action.GPS_NETWORK
  */
 public class BroadcastReceiverGPSNetzwerke extends BroadcastReceiver {
 
@@ -28,10 +26,14 @@ public class BroadcastReceiverGPSNetzwerke extends BroadcastReceiver {
 	 * 
 	 */
 	private MapView mv;
-	private List<Overlay> mapOverlays;
-	private NetzwerkItemizedOverlay itemizedOverlay;
-	private int drawableid = android.R.drawable.star_off;
-	private Drawable drawable;
+	private List<Overlay> mapOverlays; // Liste der Overlays
+	private NetzwerkItemizedOverlay itemizedOverlay; // Overlay für die
+														// Netzwerke
+	private int drawableid = android.R.drawable.star_off; // Aktuell noch
+															// Platzhalter für
+															// ein Finales
+															// Drawable
+	private Drawable drawable; // Die eigentliche Drawable
 
 	public BroadcastReceiverGPSNetzwerke(MapView tmv, Context ctx) {
 		this.mv = tmv;
@@ -47,15 +49,26 @@ public class BroadcastReceiverGPSNetzwerke extends BroadcastReceiver {
 	 */
 	@Override
 	public void onReceive(Context context, Intent intent) {
+		// Extra Bundle aus dem Intent holen
 		Bundle extra = intent.getExtras();
+		// Arrays für die Geografischen Daten aus den Extras holen
 		String[] lat = extra.getStringArray(GPS.EXTRA_LAT_ARRAY);
 		String[] lon = extra.getStringArray(GPS.EXTRA_LON_ARRAY);
+		// Wenn die beiden Objekte nicht leer sind und die Liste der Map
+		// Overlays größer als 0 ist, wird das mapOverlay an der Ersten (mit der
+		// id 0) Stelle gelöscht. An dieser Stelle befindet sich das Overlay mit
+		// den Netzwerken.
 		if ((lat != null) && (lon != null)) {
-			if(mapOverlays.size()>0){
+			if (mapOverlays.size() > 0) {
 				mapOverlays.remove(0);
 			}
+			// Neues Overlay mit dem Standard drawable erstellen
 			itemizedOverlay = new NetzwerkItemizedOverlay(drawable);
+			// mit einer Schleife durch das gesamte Array von Geografischen
+			// Daten laufen.
 			for (int i = 0; i < lat.length; i++) {
+				// Null check, damit es keine Fehler beim erstellen des
+				// GeoPoints gibt.
 				if ((lat[i] != null) && (lon[i] != null)) {
 					GeoPoint point = new GeoPoint((int) (Float.parseFloat(lat[i]) * 1E6),
 							(int) (Float.parseFloat(lon[i]) * 1E6));
@@ -63,6 +76,7 @@ public class BroadcastReceiverGPSNetzwerke extends BroadcastReceiver {
 					itemizedOverlay.addOverlay(overlayitem);
 				}
 			}
+			// Overlay zur Karte hinzufügen.
 			mapOverlays.add(0, itemizedOverlay);
 		}
 

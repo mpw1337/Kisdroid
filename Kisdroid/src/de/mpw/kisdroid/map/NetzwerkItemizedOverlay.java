@@ -12,24 +12,34 @@ import com.google.android.maps.OverlayItem;
 
 /**
  * @author Markus
+ * Angepasste version eines ItemizedOverlays
  * 
- *         {@link http://de.wikibooks.org/wiki/Googles_Android/_MapActivity}
+ *  {@link http://de.wikibooks.org/wiki/Googles_Android/_MapActivity}
  */
 public class NetzwerkItemizedOverlay extends ItemizedOverlay<OverlayItem> {
 
 	private ArrayList<OverlayItem> mOverlays = new ArrayList<OverlayItem>();
 
 	/**
-	 * @param drawable
+	 * @param drawable Standard Drawable für Marker
 	 */
 	public NetzwerkItemizedOverlay(Drawable drawable) {
 		super(boundCenterBottom(drawable));
 	}
-
+	/**
+	 * 
+	 * @param overlay Overlay, was hinzugefügt werden soll.
+	 */
 	public void addOverlay(OverlayItem overlay) {
 		mOverlays.add(overlay);
 		populate();
 	}
+	/**
+	 * 
+	 * @param overlay Overlay, was hinzugefügt werden soll.
+	 * @param drawable Spezielles Drawable für den Marker.
+	 */
+	
 	public void addOverlay(OverlayItem overlay,Drawable drawable){
 		overlay.setMarker(drawable);
 		mOverlays.add(overlay);
