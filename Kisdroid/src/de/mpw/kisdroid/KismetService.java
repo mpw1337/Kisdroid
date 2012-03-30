@@ -21,10 +21,8 @@ public class KismetService extends Service {
 
 	private NotificationManager nManager; // Notification Manager für
 											// Nachrichten.
-	private String NTitel = getApplicationContext().getResources().getString(
-			R.string.nf_titel_start);
-	private String NDetail = getApplicationContext().getResources().getString(
-			R.string.nf_detail_start);
+	private String NTitel;
+	private String NDetail;
 	int icon = R.drawable.icon;
 	private Notification nBenachrichtigung;
 
@@ -54,7 +52,8 @@ public class KismetService extends Service {
 		// Port aus Einstellungen lesen
 		PORT = Integer.parseInt(mPref.getString(Einstellungen.KEY_PORT, "2501"));
 		client = new KismetClient(SERVER, PORT, this.getApplicationContext());
-
+		NTitel = getApplicationContext().getResources().getString(R.string.nf_titel_start);
+		NDetail = getApplicationContext().getResources().getString(R.string.nf_detail_start);
 		// Notification Manager holen
 		nManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
 	}
