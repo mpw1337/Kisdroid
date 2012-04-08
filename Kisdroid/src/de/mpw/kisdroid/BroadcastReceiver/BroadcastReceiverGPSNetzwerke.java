@@ -27,12 +27,10 @@ public class BroadcastReceiverGPSNetzwerke extends BroadcastReceiver {
 	 */
 	private MapView mv;
 	private List<Overlay> mapOverlays; // Liste der Overlays
-	private NetzwerkItemizedOverlay itemizedOverlay; // Overlay für die
-														// Netzwerke
-	private int drawableid = android.R.drawable.star_off; // Aktuell noch
-															// Platzhalter für
-															// ein Finales
-															// Drawable
+	// Overlay für die Netzwerke
+	private NetzwerkItemizedOverlay itemizedOverlay;
+	// Aktuell nochPlatzhalter fürein Finales Drawable
+	private int drawableid = android.R.drawable.star_off;
 	private Drawable drawable; // Die eigentliche Drawable
 
 	public BroadcastReceiverGPSNetzwerke(MapView tmv, Context ctx) {
