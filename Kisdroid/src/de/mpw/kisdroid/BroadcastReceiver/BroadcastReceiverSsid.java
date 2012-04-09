@@ -15,6 +15,7 @@ public class BroadcastReceiverSsid extends BroadcastReceiver {
 	private TextView tv_strength;
 	private TextView tv_encryption;
 	private TextView tv_mac;
+	private TextView tv_channel;
 	private int count;
 	private Context ctx;
 	private Resources res;
@@ -23,13 +24,25 @@ public class BroadcastReceiverSsid extends BroadcastReceiver {
 	 * Im Construktor werden die TextViews für den Namen und Mac Adresse
 	 * übergeben
 	 */
-	public BroadcastReceiverSsid(TextView network, TextView strength, TextView mac, TextView encry,Context context) {
+	/**
+	 * 
+	 * @param network TextView für die Namen
+	 * @param strength TextView für die Stärke in dbm
+	 * @param mac TextView für die MAC Adresse
+	 * @param encry TextView für die Verschlüsselung
+	 * @param channel TextView für den Channel
+	 * @param context Context der Application für die Resourcen
+	 */
+	public BroadcastReceiverSsid(TextView network, TextView strength, TextView mac, TextView encry,
+			TextView channel, Context context) {
 		this.tv_Networks = network;
 		this.tv_mac = mac;
 		this.tv_strength = strength;
 		this.tv_encryption = encry;
+		this.tv_channel = channel;
 		this.ctx = context;
 		this.res = ctx.getResources();
+
 	}
 
 	/*
@@ -58,10 +71,15 @@ public class BroadcastReceiverSsid extends BroadcastReceiver {
 		for (String string : mac) {
 			tv_mac.append("\n" + string);
 		}
-		tv_encryption.setText(R.string.tx_encryption);
+		tv_encryption.setText(res.getString(R.string.tx_encryption));
 		String[] encryption = intent.getStringArrayExtra(Bssid.EXTRA_ENCRYPTION);
 		for (String string : encryption) {
 			tv_encryption.append("\n" + string);
+		}
+		tv_channel.setText(res.getString(R.string.tx_channel));
+		String[] channel = intent.getStringArrayExtra(Bssid.EXTRA_CHANNEL);
+		for (String string : channel) {
+			tv_channel.append("\n" + string);
 		}
 
 	}

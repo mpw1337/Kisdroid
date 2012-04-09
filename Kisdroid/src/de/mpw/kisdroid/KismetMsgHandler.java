@@ -158,32 +158,37 @@ public class KismetMsgHandler {
 		Intent intentgps = new Intent(ACTION_GPS_NETWORK);
 		String[] lat = new String[netzwerke.size()];
 		String[] lon = new String[netzwerke.size()];
-		String[] temp = new String[netzwerke.size()];
+		String[] ssid = new String[netzwerke.size()];
 		String[] strength = new String[netzwerke.size()];
 		String[] mac = new String[netzwerke.size()];
 		String[] encryption = new String[netzwerke.size()];
+		String[] channel = new String[netzwerke.size()];
+		Bssid tbssid;
 
 		int i = 0;
 		Collection<Netzwerk> daten = netzwerke.values();
 		for (Iterator<Netzwerk> iterator = daten.iterator(); iterator.hasNext();) {
 			Netzwerk netzwerk = (Netzwerk) iterator.next();
 			if ((netzwerk.getSsid() != null) && (netzwerk.getBssid() != null)) {
-				temp[i] = netzwerk.getSsid().getSsid();
+				tbssid = netzwerk.getBssid();
+				ssid[i] = netzwerk.getSsid().getSsid();
 				mac[i] = netzwerk.mac;
-				lat[i] = netzwerk.getBssid().getBestGps().getLat();
-				lon[i] = netzwerk.getBssid().getBestGps().getLon();
-				strength[i] = netzwerk.getBssid().getSignalDbm().getSignal();
-				encryption[i] = netzwerk.getBssid().getEncryption();
+				lat[i] = tbssid.getBestGps().getLat();
+				lon[i] = tbssid.getBestGps().getLon();
+				strength[i] = tbssid.getSignalDbm().getSignal();
+				encryption[i] = tbssid.getEncryption();
+				channel[i] = tbssid.getChannel();
 			}
 			i++;
 
 		}
 		intentgps.putExtra(GPS.EXTRA_LAT_ARRAY, lat);
 		intentgps.putExtra(GPS.EXTRA_LON_ARRAY, lon);
-		intent.putExtra(Ssid.EXTRA, temp);
+		intent.putExtra(Ssid.EXTRA, ssid);
 		intent.putExtra(Ssid.EXTRA_MAXSTRENGTH, strength);
 		intent.putExtra(Ssid.EXTRA_MAC, mac);
 		intent.putExtra(Bssid.EXTRA_ENCRYPTION, encryption);
+		intent.putExtra(Bssid.EXTRA_CHANNEL, channel);
 		// intent.putExtra("OBJECT", object);
 		ctx.sendBroadcast(intentgps);
 		ctx.sendBroadcast(intent);

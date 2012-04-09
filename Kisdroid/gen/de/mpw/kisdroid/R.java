@@ -22,17 +22,18 @@ public final class R {
         public static final int icon=0x7f020001;
     }
     public static final class id {
-        public static final int mv_map=0x7f0a0009;
-        public static final int opt_battery=0x7f0a000c;
-        public static final int opt_einstellungen=0x7f0a000a;
-        public static final int opt_map=0x7f0a000d;
-        public static final int opt_start_stop=0x7f0a000b;
+        public static final int mv_map=0x7f0a000a;
+        public static final int opt_battery=0x7f0a000d;
+        public static final int opt_einstellungen=0x7f0a000b;
+        public static final int opt_map=0x7f0a000e;
+        public static final int opt_start_stop=0x7f0a000c;
         public static final int pb_battery_status=0x7f0a0001;
         public static final int tv_Networks=0x7f0a0005;
+        public static final int tv_channel=0x7f0a0008;
         public static final int tv_encryption=0x7f0a0007;
         public static final int tv_mac=0x7f0a0006;
         public static final int tv_server_port=0x7f0a0003;
-        public static final int tv_strength=0x7f0a0008;
+        public static final int tv_strength=0x7f0a0009;
         public static final int tv_time=0x7f0a0004;
         public static final int tx_bat_percent=0x7f0a0002;
         public static final int tx_battery_status=0x7f0a0000;
@@ -68,6 +69,7 @@ public final class R {
         public static final int sf_stop=0x7f060006;
         public static final int toast_fehler=0x7f060007;
         public static final int tx_bat_Ueberschrift=0x7f060014;
+        public static final int tx_channel=0x7f06001a;
         public static final int tx_encryption=0x7f060018;
         public static final int tx_mac=0x7f060017;
         public static final int tx_rxl=0x7f060019;

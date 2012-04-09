@@ -85,6 +85,7 @@ public class Bssid implements Protocols {
 
 	public static final String IDENTIFIER = "*BSSID";
 	public static final String EXTRA_ENCRYPTION = "EXTRA_ENCRYPION";
+	public static final String EXTRA_CHANNEL = "EXTRA_CHANNEL";
 	public static final String[] TYPE = new String[]{
 	"Infrastructure","Ad-hoc","probe","Turbocell","Data"};
 		
@@ -112,6 +113,7 @@ public class Bssid implements Protocols {
 	// + "datasize,turbocellnid,turbocellmode,turbocellsat,carrierset,"
 	// + "maxseenrate,encodingset,decrypted,dupeivpackets,bsstimestamp,"
 	// + "cdpdevice,cdpport,fragments,retries,newpackets,freqmhz,datacryptset";
+
 
 	private GPS mMinGps;
 	private GPS mMaxGps;
@@ -221,6 +223,10 @@ public class Bssid implements Protocols {
 		return "Mac: " + mMac + " Typ: " + ptype + "Channel: " + channel + "Min GPS:"
 				+ mMinGps.toString() + "RangeIP: " + rangeip.toString() + " Netmask: "
 				+ netmaskip.toString() + "Gateway IP: " + gatewayip.toString();
+	}
+
+	public String getChannel() {
+		return channel.toString();
 	}
 
 }
