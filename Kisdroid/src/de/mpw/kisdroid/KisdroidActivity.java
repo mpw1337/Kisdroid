@@ -49,7 +49,7 @@ public class KisdroidActivity extends Activity {
 		mPref = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
 		// Broadcast Receiver für Time initialisieren
 		mBroadcastReceiverTime = new BroadcastReceiverTime(tv_time);
-		//Broadcast Receiver für die Netzwerke initialisieren
+		// Broadcast Receiver für die Netzwerke initialisieren
 		mBroadcastReceiverSsid = new BroadcastReceiverSsid(tv_Networks, tv_strength, tv_mac,
 				tv_encryption, tv_channel, this.getApplicationContext());
 	}
@@ -70,23 +70,17 @@ public class KisdroidActivity extends Activity {
 				mPref.getString(Einstellungen.KEY_HOST, "127.0.0.1")).replace("PORT",
 				mPref.getString(Einstellungen.KEY_PORT, "2501"));
 		tv_server_port.setText(tx_server_port);
-		if (mPref.getBoolean(Einstellungen.KEY_SSID, true)) {
-			tv_Networks.setVisibility(View.VISIBLE);
-		} else {
-			tv_Networks.setVisibility(View.GONE);
-			// tv_Networks.setWidth(0);
-		}
+		Einstellungenlesen(Einstellungen.KEY_SSID, tv_Networks);
+		Einstellungenlesen(Einstellungen.KEY_MAC, tv_mac);
+		Einstellungenlesen(Einstellungen.KEY_STRENGTH, tv_strength);
+		Einstellungenlesen(Einstellungen.KEY_CHANNEL, tv_channel);
+	}
 
-		if (mPref.getBoolean(Einstellungen.KEY_MAC, true)) {
-			tv_mac.setVisibility(View.VISIBLE);
+	private void Einstellungenlesen(String key, TextView textview) {
+		if (mPref.getBoolean(key, true)) {
+			textview.setVisibility(View.VISIBLE);
 		} else {
-			tv_mac.setVisibility(View.GONE);
-		}
-
-		if (mPref.getBoolean(Einstellungen.KEY_STRENGTH, true)) {
-			tv_strength.setVisibility(View.VISIBLE);
-		} else {
-			tv_strength.setVisibility(View.GONE);
+			textview.setVisibility(View.GONE);
 		}
 	}
 

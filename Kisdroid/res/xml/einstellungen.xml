@@ -33,6 +33,10 @@
             android:title="@string/pf_encryption"/>
         <CheckBoxPreference 
             android:enabled="true"
+            android:key="channel"
+            android:title="@string/pf_channel"/>
+        <CheckBoxPreference 
+            android:enabled="true"
             android:key="strength"
             android:title="@string/pf_strength"/>
     </PreferenceCategory>

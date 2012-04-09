@@ -25,5 +25,6 @@
     <string name="tx_encryption">encr</string>
     <string name="tx_rxl">RXL</string>
     <string name="tx_channel">CH</string>
+    <string name="pf_channel">Channel</string>
 
 </resources>

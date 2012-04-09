@@ -59,6 +59,7 @@ public final class R {
         public static final int opt_start_stop=0x7f060010;
         public static final int pf_Server=0x7f060008;
         public static final int pf_aktualisierung_netzwerke=0x7f06000d;
+        public static final int pf_channel=0x7f06001b;
         public static final int pf_einstellungen=0x7f06000b;
         public static final int pf_encryption=0x7f06000e;
         public static final int pf_gui=0x7f06000c;

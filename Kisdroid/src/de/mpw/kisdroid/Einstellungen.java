@@ -12,11 +12,12 @@ public class Einstellungen extends PreferenceActivity implements OnSharedPrefere
 	public static final String KEY_NETZWERKAKTUALISIERUNGSRATE = "netzwerk_aktualisierungs_rate";
 	public static final String KEY_HOST = "host";
 	public static final String KEY_PORT = "port";
-	public static final String KEY_SSID ="SSID";
+	public static final String KEY_SSID = "SSID";
 	public static final String KEY_MAC = "mac";
 	public static final String KEY_ENCRYPTION = "encryption";
 	public static final String KEY_STRENGTH = "strength";
-	
+	public static final String KEY_CHANNEL = "channel";
+
 	EditTextPreference mServer;
 	EditTextPreference mPort;
 	EditTextPreference mNetzwerkAktualisierungsRate;
@@ -36,7 +37,6 @@ public class Einstellungen extends PreferenceActivity implements OnSharedPrefere
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
-		// TODO Auto-generated method stub
 		super.onCreate(savedInstanceState);
 		addPreferencesFromResource(R.xml.einstellungen);
 		mPref = getSharedPreferences(getPackageName() + "_preferences", MODE_PRIVATE);
