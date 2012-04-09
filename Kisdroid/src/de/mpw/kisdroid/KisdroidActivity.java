@@ -48,7 +48,7 @@ public class KisdroidActivity extends Activity {
 		// Broadcast Receiver für Time initialisieren
 		mBroadcastReceiverTime = new BroadcastReceiverTime(tv_time);
 		mBroadcastReceiverSsid = new BroadcastReceiverSsid(tv_Networks, tv_strength, tv_mac,
-				tv_encryption);
+				tv_encryption,this.getApplicationContext());
 	}
 
 	@Override
