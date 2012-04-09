@@ -70,6 +70,7 @@ public final class R {
         public static final int tx_bat_Ueberschrift=0x7f060014;
         public static final int tx_encryption=0x7f060018;
         public static final int tx_mac=0x7f060017;
+        public static final int tx_rxl=0x7f060019;
         public static final int tx_server_port=0x7f060015;
         public static final int tx_ssid=0x7f060016;
     }

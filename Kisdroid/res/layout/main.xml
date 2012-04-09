@@ -48,7 +48,7 @@
 		        android:id="@+id/tv_strength"
 		        android:layout_width="wrap_content"
 		        android:layout_height="wrap_content"
-		        android:text="" />
+		        android:text="@string/tx_rxl"/>
 		    
        	</LinearLayout>
     </ScrollView>

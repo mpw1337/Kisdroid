@@ -23,5 +23,6 @@
     <string name="tx_ssid">SSID</string>
     <string name="tx_mac">Mac</string>
     <string name="tx_encryption">encr</string>
+    <string name="tx_rxl">RXL</string>
 
 </resources>

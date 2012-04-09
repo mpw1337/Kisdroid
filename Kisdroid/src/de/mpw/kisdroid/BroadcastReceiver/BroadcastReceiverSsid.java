@@ -48,17 +48,17 @@ public class BroadcastReceiverSsid extends BroadcastReceiver {
 		for (String ssid : networks) {
 			tv_Networks.append("\n " + ssid);
 		}
-		tv_strength.setText("");
+		tv_strength.setText(res.getString(R.string.tx_rxl));
 		String[] maxstrength = intent.getStringArrayExtra(Ssid.EXTRA_MAXSTRENGTH);
 		for (String strength : maxstrength) {
 			tv_strength.append("\n" + strength);
 		}
-		tv_mac.setText("");
+		tv_mac.setText(res.getString(R.string.tx_mac));
 		String[] mac = intent.getStringArrayExtra(Ssid.EXTRA_MAC);
 		for (String string : mac) {
 			tv_mac.append("\n" + string);
 		}
-		tv_encryption.setText("");
+		tv_encryption.setText(R.string.tx_encryption);
 		String[] encryption = intent.getStringArrayExtra(Bssid.EXTRA_ENCRYPTION);
 		for (String string : encryption) {
 			tv_encryption.append("\n" + string);
