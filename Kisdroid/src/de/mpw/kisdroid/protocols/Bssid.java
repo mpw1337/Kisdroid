@@ -178,6 +178,7 @@ public class Bssid implements Protocols {
 				this.encryption = string;
 			}
 		}
+		this.encryption = string;
 	}
 
 	public String getRaw() {
