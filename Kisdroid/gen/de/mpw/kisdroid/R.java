@@ -80,8 +80,12 @@ public final class R {
         public static final int tx_ssid=0x7f060016;
     }
     public static final class style {
+        /**          <item name="android:layout_weight">95</item> 
+         */
         public static final int mac=0x7f080003;
         public static final int spalten=0x7f080001;
+        /**          <item name="android:layout_weight">70</item> 
+         */
         public static final int ssid=0x7f080002;
         public static final int ueberschrift=0x7f080000;
     }
