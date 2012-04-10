@@ -54,10 +54,9 @@ public class BroadcastReceiverSsid extends BroadcastReceiver {
 
 	@Override
 	public void onReceive(Context contenxt, Intent intent) {
-		tv_Networks.setText("");
 		String[] networks = intent.getExtras().getStringArray(Ssid.EXTRA);
 		count = networks.length;
-		tv_Networks.setText(res.getString(R.string.tx_ssid) + count);
+		tv_Networks.setText(res.getString(R.string.tx_ssid)+ " /"+ count);
 		for (String ssid : networks) {
 			tv_Networks.append("\n " + ssid);
 		}
