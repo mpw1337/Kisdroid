@@ -3,4 +3,16 @@
     <style name="ueberschrift" parent="@android:style/TextAppearance.Large">
         <item name="android:textSize" >@dimen/ueberschrift</item>
     </style>
+    <style name="spalten" parent="@android:style/TextAppearance.Small">
+       <item name="android:layout_weight">100</item>
+        <item name="android:layout_width">wrap_content</item>
+		<item name="android:layout_height">wrap_content</item>
+		<item name="android:padding">@dimen/pad_networks</item>
+    </style>
+    <style name="ssid" parent="@style/spalten">
+<!--         <item name="android:layout_weight">70</item> -->
+    </style>
+    <style name="mac" parent="@style/spalten">
+<!--         <item name="android:layout_weight">95</item> -->
+    </style>
 </resources>

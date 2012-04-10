@@ -2,5 +2,7 @@
 <resources>
     <dimen name="bat_padding">10dp</dimen>
     <dimen name="ueberschrift">50dip</dimen>
+    <dimen name="pad_info">5dp</dimen>
+    <dimen name="pad_networks">3dp</dimen>
     
 </resources>
