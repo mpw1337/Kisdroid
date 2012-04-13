@@ -37,6 +37,7 @@
         <activity android:name="BatteryActivity"></activity>
         <activity android:name=".map.MapActivity"></activity>
         <uses-library android:name="com.google.android.maps"/>
+        <activity android:name="Netzwerke"></activity>
     </application>
 
 </manifest>

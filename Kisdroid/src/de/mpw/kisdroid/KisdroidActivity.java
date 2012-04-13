@@ -122,7 +122,7 @@ public class KisdroidActivity extends Activity {
 			}
 			break;
 		case R.id.opt_battery:
-			startActivity(new Intent(this, BatteryActivity.class));
+			startActivity(new Intent(this, Netzwerke.class));
 			break;
 		case R.id.opt_map:
 			startActivity(new Intent(this, MapActivity.class));
