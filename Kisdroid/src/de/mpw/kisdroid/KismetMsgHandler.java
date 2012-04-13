@@ -64,9 +64,11 @@ public class KismetMsgHandler {
 	protected void finalize() throws Throwable {
 		super.finalize();
 	}
+
 	/**
 	 * @author Markus
-	 * @param msg Nachricht vom KismetClient, die geparst werden soll
+	 * @param msg
+	 *            Nachricht vom KismetClient, die geparst werden soll
 	 */
 
 	public void parse(String msg) {
@@ -84,7 +86,6 @@ public class KismetMsgHandler {
 			} else {
 				netzwerke.put(tbssid.getMac(), new Netzwerk(tbssid));
 			}
-			Log.d("BSSID", String.valueOf(netzwerke.size()));
 
 		}
 		/*
@@ -100,7 +101,6 @@ public class KismetMsgHandler {
 			} else {
 				netzwerke.put(tssid.getMac(), new Netzwerk(tssid));
 			}
-			Log.d("SSID", String.valueOf(netzwerke.size()));
 
 		}
 		/*
@@ -147,7 +147,7 @@ public class KismetMsgHandler {
 		}
 
 	}
-	
+
 	/**
 	 * @Description Methode, die alle Informationen zu den Netzwerken versendet
 	 */
