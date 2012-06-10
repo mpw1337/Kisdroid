@@ -131,6 +131,7 @@ public class KismetMsgHandler {
 			Log.d("BATTERY", battery.toString());
 			Intent bat_intent = new Intent(ACTION_BATTERY);
 			bat_intent.putExtra(Battery.EXTRA_PERCENTAGE, battery.getPercentage());
+			bat_intent.putExtra(Battery.EXTRA_STATUS, battery.getStatus());
 			ctx.sendBroadcast(bat_intent);
 
 		}

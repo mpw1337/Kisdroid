@@ -12,23 +12,30 @@
         android:text="@string/tx_bat_Ueberschrift" />
 
     <TextView
-        android:id="@+id/tx_battery_status"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="" />
-
-    <ProgressBar
-        android:id="@+id/pb_battery_status"
-        style="?android:attr/progressBarStyleHorizontal"
-        android:layout_width="fill_parent"
-        android:layout_height="wrap_content"
-        android:max="100"
-        android:progress="0" />
-
-    <TextView
-        android:id="@+id/tx_bat_percent"
+        android:id="@+id/tx_bat_status"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:text="" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+	    	<ProgressBar android:id="@+id/pb_battery_status"
+	    		style="?android:attr/progressBarStyleHorizontal"
+	    		android:layout_width="0dip"
+	    		android:layout_height="wrap_content" 
+	    		android:max="100"
+	    		android:progress="0"
+	    		android:layout_weight="1" />
+	
+	    	<TextView
+	    	    android:id="@+id/tx_bat_percent"
+	    	    android:layout_width="@dimen/dim_bat_percentage"
+	    	    android:layout_height="wrap_content"
+	    	    android:paddingLeft="@dimen/bat_padding"
+	    	    android:text="" />
+
+    </LinearLayout>
 
 </LinearLayout>

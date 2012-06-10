@@ -15,6 +15,7 @@ public final class R {
     }
     public static final class dimen {
         public static final int bat_padding=0x7f070000;
+        public static final int dim_bat_percentage=0x7f070004;
         public static final int pad_info=0x7f070002;
         public static final int pad_networks=0x7f070003;
         public static final int ueberschrift=0x7f070001;
@@ -39,7 +40,7 @@ public final class R {
         public static final int tv_strength=0x7f0a0009;
         public static final int tv_time=0x7f0a0004;
         public static final int tx_bat_percent=0x7f0a0002;
-        public static final int tx_battery_status=0x7f0a0000;
+        public static final int tx_bat_status=0x7f0a0000;
     }
     public static final class layout {
         public static final int battery=0x7f030000;

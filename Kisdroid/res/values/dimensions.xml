@@ -4,5 +4,6 @@
     <dimen name="ueberschrift">50dip</dimen>
     <dimen name="pad_info">5dp</dimen>
     <dimen name="pad_networks">3dp</dimen>
+    <dimen name="dim_bat_percentage">35dp</dimen>
     
 </resources>

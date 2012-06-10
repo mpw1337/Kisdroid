@@ -11,6 +11,7 @@ public class BatteryActivity extends Activity {
 
 	private ProgressBar pb_battery_status;
 	private TextView tx_bat_percentage;
+	private TextView tx_battery_status;
 
 	private BroadcastReceiverBattery mBroadcast;
 
@@ -20,7 +21,8 @@ public class BatteryActivity extends Activity {
 		setContentView(R.layout.battery);
 		pb_battery_status = (ProgressBar) findViewById(R.id.pb_battery_status);
 		tx_bat_percentage = (TextView) findViewById(R.id.tx_bat_percent);
-		mBroadcast = new BroadcastReceiverBattery(pb_battery_status, tx_bat_percentage);
+		tx_battery_status = (TextView) findViewById(R.id.tx_bat_status);
+		mBroadcast = new BroadcastReceiverBattery(pb_battery_status, tx_bat_percentage, tx_battery_status);
 
 	}
 

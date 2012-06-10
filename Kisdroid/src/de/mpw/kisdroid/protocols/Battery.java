@@ -2,13 +2,14 @@ package de.mpw.kisdroid.protocols;
 
 public class Battery implements Protocols {
 	public static final String IDENTIFIER = "*BATTERY";
-	public static String EXTRA_PERCENTAGE = "BATTERY_PERCENTAGE";
+	public static final String EXTRA_PERCENTAGE = "BATTERY_PERCENTAGE";
+	public static final String EXTRA_STATUS = "BATTERY_STATUS";
 	public static String CAPABILITY = "!%n ENABLE BATTERY percentage,charging,ac,remaining";
 	private String raw;
 
 	private String percentage;
-	private String charging;
-	private String ac;
+	private String charging; //kein Laden: 0 , Laden: 1, Fertig geladen: 2
+	private String ac; // AC: 1 Strom, AC: 0 keine Netzversorgung
 	private String remaining;
 
 	public Battery(String string) {
@@ -37,6 +38,11 @@ public class Battery implements Protocols {
 	public String toString() {
 		return "Percentage: " + percentage + "% Charging:" + charging + "AC:" + ac
 				+ " Verbleibend:" + remaining;
+	}
+
+	public String getStatus() {
+		// TODO Auto-generated method stub
+		return "nichts";
 	}
 
 }
