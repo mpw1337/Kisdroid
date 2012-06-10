@@ -7,6 +7,7 @@ import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.widget.ArrayAdapter;
+import de.mpw.kisdroid.adapter.NetzwerkAdapter;
 import de.mpw.kisdroid.protocols.Bssid;
 import de.mpw.kisdroid.protocols.Ssid;
 
@@ -19,8 +20,8 @@ public class BroadcastReceiverNetzwerke extends BroadcastReceiver {
 	/**
 	 * 
 	 */
-	private ArrayAdapter<String> mAdapter;
-	public BroadcastReceiverNetzwerke(ArrayAdapter<String> adapter) {
+	private NetzwerkAdapter mAdapter;
+	public BroadcastReceiverNetzwerke(NetzwerkAdapter adapter) {
 		this.mAdapter = adapter;
 	}
 
@@ -36,7 +37,10 @@ public class BroadcastReceiverNetzwerke extends BroadcastReceiver {
 		String[] encryption = intent.getStringArrayExtra(Bssid.EXTRA_ENCRYPTION);
 		String[] channel = intent.getStringArrayExtra(Bssid.EXTRA_CHANNEL);
 		for (int i = 0; i < networks.length; i++) {
-			mAdapter.add(networks[i] + mac[i]);
+			String[] temp = new String[2];
+			temp[0] = networks[i];
+			temp[1] = mac[i];
+			mAdapter.add(temp);
 		}
 	}
 

@@ -24,11 +24,12 @@ public final class R {
         public static final int icon=0x7f020001;
     }
     public static final class id {
+        public static final int RelativeLayout1=0x7f0a000b;
         public static final int mv_map=0x7f0a000a;
-        public static final int opt_battery=0x7f0a000d;
-        public static final int opt_einstellungen=0x7f0a000b;
-        public static final int opt_map=0x7f0a000e;
-        public static final int opt_start_stop=0x7f0a000c;
+        public static final int opt_battery=0x7f0a000e;
+        public static final int opt_einstellungen=0x7f0a000c;
+        public static final int opt_map=0x7f0a000f;
+        public static final int opt_start_stop=0x7f0a000d;
         public static final int pb_battery_status=0x7f0a0001;
         public static final int tv_Networks=0x7f0a0005;
         public static final int tv_channel=0x7f0a0008;
@@ -45,7 +46,8 @@ public final class R {
         public static final int main=0x7f030001;
         public static final int maintab=0x7f030002;
         public static final int map=0x7f030003;
-        public static final int netzwerke=0x7f030004;
+        public static final int net_list=0x7f030004;
+        public static final int netzwerke=0x7f030005;
     }
     public static final class menu {
         public static final int hauptmenue=0x7f090000;

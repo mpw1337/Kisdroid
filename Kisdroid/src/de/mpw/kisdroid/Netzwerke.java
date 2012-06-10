@@ -8,6 +8,7 @@ import android.content.IntentFilter;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import de.mpw.kisdroid.BroadcastReceiver.BroadcastReceiverNetzwerke;
+import de.mpw.kisdroid.adapter.NetzwerkAdapter;
 
 /**
  * @author Markus
@@ -23,10 +24,14 @@ public class Netzwerke extends ListActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.netzwerke);
 		getListView();
-		ArrayAdapter<String> adapter = new ArrayAdapter<String>(this,
-				android.R.layout.simple_list_item_1);
+		NetzwerkAdapter adapter = new NetzwerkAdapter(this,
+				R.layout.net_list);
 		setListAdapter(adapter);
 		mBroadcastReceiverNetzwerke = new BroadcastReceiverNetzwerke(adapter);
+		String[] temp = new String[2];
+		temp[0] = "test";
+		temp[1] = "Mac adresse";
+		adapter.add(temp);
 	}
 
 

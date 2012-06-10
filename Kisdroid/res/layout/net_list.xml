@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/RelativeLayout1"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/tv_Networks"
+        style="@style/ssid"
+        android:text="@string/tx_ssid" />
+
+    <TextView
+        android:id="@+id/tv_mac"
+        style="@style/mac"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/tv_Networks"
+        android:text="@string/tx_mac" />
+
+    <TextView
+        android:id="@+id/tv_encryption"
+        style="@style/spalten"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/tv_mac"
+        android:text="@string/tx_encryption" />
+
+    <TextView
+        android:id="@+id/tv_strength"
+        style="@style/spalten"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/tv_encryption"
+        android:text="@string/tx_rxl" />
+
+    <TextView
+        android:id="@+id/tv_channel"
+        style="@style/spalten"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@+id/tv_strength"
+        android:text="@string/tx_channel" />
+
+</RelativeLayout>
