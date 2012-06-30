@@ -14,6 +14,7 @@ public class Ssid implements Protocols {
 	public static String CAPABILITY = "!%n ENABLE SSID mac,firsttime,lasttime,maxrate,ssid";
 	public static String EXTRA = "SSIDA";
 	public static String EXTRA_MAXSTRENGTH = "MAXSTRENGTH";
+	public static String EXTRA_LASTTIME = "LASTTIME";
 
 	public Ssid(String string) {
 		this.raw = string;
