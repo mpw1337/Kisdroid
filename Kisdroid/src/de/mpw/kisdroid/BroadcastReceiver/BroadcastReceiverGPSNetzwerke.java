@@ -9,11 +9,13 @@ import com.google.android.maps.OverlayItem;
 
 import de.mpw.kisdroid.map.NetzwerkItemizedOverlay;
 import de.mpw.kisdroid.protocols.GPS;
+import de.mpw.kisdroid.protocols.Ssid;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
+import android.util.Log;
 
 /**
  * @author Markus
@@ -52,6 +54,19 @@ public class BroadcastReceiverGPSNetzwerke extends BroadcastReceiver {
 		// Arrays für die Geografischen Daten aus den Extras holen
 		String[] lat = extra.getStringArray(GPS.EXTRA_LAT_ARRAY);
 		String[] lon = extra.getStringArray(GPS.EXTRA_LON_ARRAY);
+		// Array der lastseen holen.
+		String[] lasttime = extra.getStringArray(Ssid.EXTRA_LASTTIME);
+		Integer[] intLastTime = new Integer[lasttime.length];
+		int j = 0;
+		for (String string : lasttime) {
+			try {
+				intLastTime[j] = Integer.parseInt(string);
+			} catch (Exception e) {
+				Log.d("LASTTIME", e.getMessage() + "Nummer: " + j);
+			}
+			j++;
+			
+		}
 		// Wenn die beiden Objekte nicht leer sind und die Liste der Map
 		// Overlays größer als 0 ist, wird das mapOverlay an der Ersten (mit der
 		// id 0) Stelle gelöscht. An dieser Stelle befindet sich das Overlay mit
@@ -72,6 +87,7 @@ public class BroadcastReceiverGPSNetzwerke extends BroadcastReceiver {
 							(int) (Float.parseFloat(lon[i]) * 1E6));
 					OverlayItem overlayitem = new OverlayItem(point, "Titel", "Snippet");
 					itemizedOverlay.addOverlay(overlayitem);
+					Log.d("LASTTIME_OK","LastTime: " + intLastTime[i].toString());
 				}
 			}
 			// Overlay zur Karte hinzufügen.
