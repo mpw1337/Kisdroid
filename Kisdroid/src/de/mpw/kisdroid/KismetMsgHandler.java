@@ -164,6 +164,7 @@ public class KismetMsgHandler {
 		String[] mac = new String[netzwerke.size()];
 		String[] encryption = new String[netzwerke.size()];
 		String[] channel = new String[netzwerke.size()];
+		String[] lasttime = new String[netzwerke.size()];
 		Bssid tbssid;
 
 		int i = 0;
@@ -179,12 +180,14 @@ public class KismetMsgHandler {
 				strength[i] = tbssid.getSignalDbm().getSignal();
 				encryption[i] = tbssid.getEncryption();
 				channel[i] = tbssid.getChannel();
+				lasttime[i] = netzwerk.getSsid().getLastTime();
 			}
 			i++;
 
 		}
 		intentgps.putExtra(GPS.EXTRA_LAT_ARRAY, lat);
 		intentgps.putExtra(GPS.EXTRA_LON_ARRAY, lon);
+		intentgps.putExtra(Ssid.EXTRA_LASTTIME,lasttime);
 		intent.putExtra(Ssid.EXTRA, ssid);
 		intent.putExtra(Ssid.EXTRA_MAXSTRENGTH, strength);
 		intent.putExtra(Ssid.EXTRA_MAC, mac);
