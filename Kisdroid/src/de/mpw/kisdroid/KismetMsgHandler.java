@@ -188,6 +188,7 @@ public class KismetMsgHandler {
 		intentgps.putExtra(GPS.EXTRA_LAT_ARRAY, lat);
 		intentgps.putExtra(GPS.EXTRA_LON_ARRAY, lon);
 		intentgps.putExtra(Ssid.EXTRA_LASTTIME,lasttime);
+		intentgps.putExtra(TimeP.EXTRA_TIME, time.getTime());
 		intent.putExtra(Ssid.EXTRA, ssid);
 		intent.putExtra(Ssid.EXTRA_MAXSTRENGTH, strength);
 		intent.putExtra(Ssid.EXTRA_MAC, mac);
