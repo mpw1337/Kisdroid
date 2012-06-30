@@ -10,6 +10,7 @@ import com.google.android.maps.OverlayItem;
 import de.mpw.kisdroid.map.NetzwerkItemizedOverlay;
 import de.mpw.kisdroid.protocols.GPS;
 import de.mpw.kisdroid.protocols.Ssid;
+import de.mpw.kisdroid.protocols.TimeP;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -34,6 +35,8 @@ public class BroadcastReceiverGPSNetzwerke extends BroadcastReceiver {
 	// Aktuell nochPlatzhalter fürein Finales Drawable
 	private int drawableid = android.R.drawable.star_off;
 	private Drawable drawable; // Die eigentliche Drawable
+	private Integer intTime; //Aktuelle Server Zeit zum vergleichen. 
+	private Integer diffTime = 300;
 
 	public BroadcastReceiverGPSNetzwerke(MapView tmv, Context ctx) {
 		this.mv = tmv;
@@ -54,6 +57,12 @@ public class BroadcastReceiverGPSNetzwerke extends BroadcastReceiver {
 		// Arrays für die Geografischen Daten aus den Extras holen
 		String[] lat = extra.getStringArray(GPS.EXTRA_LAT_ARRAY);
 		String[] lon = extra.getStringArray(GPS.EXTRA_LON_ARRAY);
+		try {
+			//Aktuelle Zeit holen
+			intTime = Integer.parseInt(extra.getString(TimeP.EXTRA_TIME));
+		} catch (Exception e) {
+			intTime = Math.round((System.currentTimeMillis()/1000));
+		}
 		// Array der lastseen holen.
 		String[] lasttime = extra.getStringArray(Ssid.EXTRA_LASTTIME);
 		Integer[] intLastTime = new Integer[lasttime.length];
@@ -82,7 +91,7 @@ public class BroadcastReceiverGPSNetzwerke extends BroadcastReceiver {
 			for (int i = 0; i < lat.length; i++) {
 				// Null check, damit es keine Fehler beim erstellen des
 				// GeoPoints gibt.
-				if ((lat[i] != null) && (lon[i] != null)) {
+				if ((lat[i] != null) && (lon[i] != null) && (intLastTime[i] > (intTime - diffTime) )) {
 					GeoPoint point = new GeoPoint((int) (Float.parseFloat(lat[i]) * 1E6),
 							(int) (Float.parseFloat(lon[i]) * 1E6));
 					OverlayItem overlayitem = new OverlayItem(point, "Titel", "Snippet");
